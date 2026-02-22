@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: longhorn-wasabi-access
+stringData:
+  AWS_ACCESS_KEY_ID: ENC[AES256_GCM,data:WhCT0/fQA3gq20lybOGAbC9wtrA=,iv:7y2yuxnpY9a5HfCRMoS/hSmvVhuLoNWGj/kdZBQcYGs=,tag:xzbbs4Agr4eMM7RD9TikWQ==,type:str]
+  AWS_SECRET_ACCESS_KEY: ENC[AES256_GCM,data:DBh34qSyKj0pKf818HdoS+5OjZt1xbqZUTHCTod90VALiLNJMA5l2Q==,iv:aY+WaFNc2uYkeEJVRMUScLzf1d8uL5nBOvmhULmt2Cs=,tag:vG5El8g6XYl00HQh4AsRsw==,type:str]
+  AWS_ENDPOINTS: ENC[AES256_GCM,data:hvXF8IvnKrTEM2RFrClIvFqtkVVDTMQKmE/B78KqxtLvRY+hjw==,iv:DelHOlnKVpi3sYNBJx7lgTQzZF3aNhQ480yo1rVLaWE=,tag:go+a00vIX1uy8zkq1KIIBw==,type:str]
+sops:
+  age:
+    - recipient: age18j2m4d43ks065lkuy40ge26xd86sss3289p0ntjklfmdns4pugxslq9jx0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWZUFvS0JMR0ZZOVhSNWpR
+        ekQ3K0tmQ1BqZDRZdHk4Z3c5Si94UDBsdUNFCjQ4Q0JqMncvcmJFbHF6MEs1YjNt
+        RjBNbVF1MXZKY2orYzlBMzQ3S0ZlUDQKLS0tIHJrck9hOHRFTEdRcjJ5VVFUMmRE
+        NzNJVDUvK1NEU1V3cjQ0V0NDdElnaVkKwqqhH66FAG1koZbkuX0CmfAuEfDQGfY9
+        6brd8juYJ3+c4PF1TkR22tYSvK+vUBe/AHEXv9XD7vRQ/FzDLxtIEA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-02-22T14:54:49Z"
+  mac: ENC[AES256_GCM,data:lCd4Fn/X2Uz4+adakn3+SefiQzh1HCqR6YIUA6CqhjthJzvlTffSDCrXk7L4oQsZVwbxoQUGx01gsnjAgAnNuEfJ+YvCNfzjKuFxw/WmXCIjH+75uoWZxxD93gA1BOuzeb8sYoIZRMujGoPMQZ8B8JQVcjcDMKLVI6ZM5LDA6i8=,iv:4J0SQcVrmR0BtQbJJdAI8gKhQ3ei3TJwvOmP9mhR1ww=,tag:F5f7lrOHMsHXQyXm+aCLZg==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.12.1
