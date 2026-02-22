@@ -29,6 +29,9 @@ nodes:
       secureboot: false
       arch: "amd64"
       mode: "metal"
+    kernelModules:
+      - name: vfio_pci
+      - name: uio_pci_generic
     schematic:
       customization:
         extraKernelArgs:
@@ -93,9 +96,15 @@ nodes:
       wwid: "eui.002538b921b9e16a"
     machineSpec:
       secureboot: false
-      arch: "amd64"
+      arch: "arm64"
       mode: "metal"
+    kernelModules:
+      - name: vfio_pci
+      - name: uio_pci_generic
     schematic:
+      overlay:
+        image: siderolabs/sbc-rockchip
+        name: rock5b
       customization:
         extraKernelArgs:
           - -init_on_alloc # Less security, faster puter
