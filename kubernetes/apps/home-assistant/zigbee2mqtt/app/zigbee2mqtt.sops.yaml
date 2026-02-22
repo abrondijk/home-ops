@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: zigbee2mqtt
+stringData:
+  ZIGBEE2MQTT_CONFIG_MQTT_USER: ENC[AES256_GCM,data:0Mz/CwJNMg==,iv:EnoSw1ElX3tzKQXnsBaL7PZ73YIQKurFhxf+KlIRyxU=,tag:KZLzSmOrmNC1lR79o0uIyw==,type:str]
+  ZIGBEE2MQTT_CONFIG_MQTT_PASSWORD: ENC[AES256_GCM,data:cWnSaIcs6UhulZZJ9g==,iv:efLY/bHnnQW4DQ/vB9pzsMrPDVGlh4B/Z4OMwJaKU0k=,tag:nZywpWfPKeILfqmkAs4BIA==,type:str]
+  ZIGBEE2MQTT_CONFIG_ADVANCED_PAN_ID: ENC[AES256_GCM,data:Sa+d7Xk=,iv:fE8zC0d6TScxZoIkDa6FY5nDz+MmHgpGpOH4N3ONcYs=,tag:ZO0aj9UyfEjdY9H7UCD07Q==,type:str]
+  ZIGBEE2MQTT_CONFIG_ADVANCED_EXT_PAN_ID: ENC[AES256_GCM,data:36bcNom1BG5JszJfegeSh4yGeTSzFkfZVlkrJwfFmFlyQbE0SA==,iv:z+K/iiPD+ZvpHeQ4Waj+rRFRYqiPw0x5EO09bNB0LRs=,tag:jAC84Q9zGIhEdojN/hSi2w==,type:str]
+  ZIGBEE2MQTT_CONFIG_ADVANCED_NETWORK_KEY: ENC[AES256_GCM,data:csDGpBOlIjdknGkqA35vrmzpQakNWq25qAmkHDaZB4mnDvvjwYvMlpNHFYfJkoU2821Iij9M3db5NhT24G5jCcyXXbeHEzvt/ZKF,iv:ZUlpqrnDd9MC23DXp6DCcD8Z7wCV2/dq+fsMg97LUzk=,tag:rcALfyh85nUppNEcw4MLNQ==,type:str]
+sops:
+  age:
+    - recipient: age18j2m4d43ks065lkuy40ge26xd86sss3289p0ntjklfmdns4pugxslq9jx0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWZUFvS0JMR0ZZOVhSNWpR
+        ekQ3K0tmQ1BqZDRZdHk4Z3c5Si94UDBsdUNFCjQ4Q0JqMncvcmJFbHF6MEs1YjNt
+        RjBNbVF1MXZKY2orYzlBMzQ3S0ZlUDQKLS0tIHJrck9hOHRFTEdRcjJ5VVFUMmRE
+        NzNJVDUvK1NEU1V3cjQ0V0NDdElnaVkKwqqhH66FAG1koZbkuX0CmfAuEfDQGfY9
+        6brd8juYJ3+c4PF1TkR22tYSvK+vUBe/AHEXv9XD7vRQ/FzDLxtIEA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-02-22T20:09:43Z"
+  mac: ENC[AES256_GCM,data:Lj1vnvq4GCl6bGRKnnirG88OJ+KbYzbCh7FSzWUeTCU77sJUobq8WD/SIXyRB3K8LcoubEqG8XRypR9aycLSSFc8R1wHCIa3/hPPiVF8d8zILVQ61er84cBZUKKYTXJ1sWyNrHKMeYg8PbPVhTvaIQq2rCYtodc/RYnGohfNppM=,iv:PTIr1Oaw3xFYWsk0HlLX/J2vphgz6VddOc/UhDk1yxc=,tag:EfiROmjyWGzWlOfUd6cbIQ==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.12.1
