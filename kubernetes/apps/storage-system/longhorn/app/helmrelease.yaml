@@ -42,7 +42,7 @@ spec:
     httproute:
       enabled: true
       parentRefs:
-        - name: internal
+        - name: internal-gateway
           namespace: network
           sectionName: https
       hostnames:

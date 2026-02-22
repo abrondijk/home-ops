@@ -44,7 +44,7 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: envoy-external
+  name: external-gateway
   annotations:
     external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
 spec:
@@ -74,7 +74,7 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: envoy-internal
+  name: internal-gateway
   annotations:
     external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
 spec:
@@ -156,10 +156,10 @@ metadata:
     external-dns.alpha.kubernetes.io/controller: none
 spec:
   parentRefs:
-    - name: envoy-external
+    - name: external-gateway
       namespace: network
       sectionName: http
-    - name: envoy-internal
+    - name: internal-gateway
       namespace: network
       sectionName: http
   rules:
