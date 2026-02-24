@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pihole
+stringData:
+  FTLCONF_webserver_api_password: ENC[AES256_GCM,data:G/o1YX0nZ72qGFf8p1Oaz8qbhB71gDcIEE/O8X0ic0M=,iv:2ZOIJbT5jWWcUVrixAEnt9gJkRxudn+ECMRL47AWVMs=,tag:CnivCQKxPVakytegW0AMXw==,type:str]
+sops:
+  age:
+    - recipient: age18j2m4d43ks065lkuy40ge26xd86sss3289p0ntjklfmdns4pugxslq9jx0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWZUFvS0JMR0ZZOVhSNWpR
+        ekQ3K0tmQ1BqZDRZdHk4Z3c5Si94UDBsdUNFCjQ4Q0JqMncvcmJFbHF6MEs1YjNt
+        RjBNbVF1MXZKY2orYzlBMzQ3S0ZlUDQKLS0tIHJrck9hOHRFTEdRcjJ5VVFUMmRE
+        NzNJVDUvK1NEU1V3cjQ0V0NDdElnaVkKwqqhH66FAG1koZbkuX0CmfAuEfDQGfY9
+        6brd8juYJ3+c4PF1TkR22tYSvK+vUBe/AHEXv9XD7vRQ/FzDLxtIEA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-02-24T09:12:14Z"
+  mac: ENC[AES256_GCM,data:afW0/jVqgmngd5sIpbedNwH2zAXvPhhHl/MzuwhAZFcX3PaykQrspj7F3QuCOf5G8TJiRy187hgyB1v5mwNCeBWgn8yQKZgBDel8uOupFIzCoKLrU6R7s0J2r8Efze63sJwe3o+B7yPBviyz0num2fRabBBTb38HoKAJMYQUaNQ=,iv:5konJEoCSFwFdYhbG8jc1nvBycbl1H8WWLEPH7qzo+U=,tag:+B888y4CFJuAhtOjq2RUTw==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.12.1
