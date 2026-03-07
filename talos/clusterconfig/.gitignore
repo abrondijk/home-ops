@@ -1,3 +1,5 @@
 kubernetes-varuna.yaml
 kubernetes-haumea.yaml
 talosconfig
+kubernetes-hygiea.yaml
+kubernetes-quaoar.yaml

@@ -11,8 +11,8 @@ additionalApiServerCertSans: &sans
   - "cluster.brondijk.dev"
 additionalMachineCertSans: *sans
 
-clusterPodNets: ["10.42.0.0/16"]
-clusterSvcNets: ["10.43.0.0/16"]
+clusterPodNets: [ "10.42.0.0/16" ]
+clusterSvcNets: [ "10.43.0.0/16" ]
 
 # Disable built-in CNI to use Cilium
 cniConfig:
@@ -78,7 +78,8 @@ nodes:
         filesystem:
           type: xfs
     networkInterfaces:
-      - deviceSelector:
+      - &networkInterface
+        deviceSelector:
           hardwareAddr: "f8:0d:ac:0a:8c:a6"
         dhcp: false
         addresses:
@@ -86,70 +87,95 @@ nodes:
         routes:
           - gateway: "10.20.20.1"
             network: 0.0.0.0/0
+        vlans:
+          - &vlan
+            vlanId: 50
+            dhcp: false
+            addresses:
+              - "10.20.50.51/24"
+            routes:
+              - gateway: "10.20.50.1"
+                network: "10.20.50.0/24"
         mtu: 9000
         vip:
           ip: "10.20.20.100"
-  - &rockNode
-    hostname: "haumea"
-    ipAddress: "10.20.20.55"
+  - <<: *intelNode
+    hostname: "quaoar"
+    ipAddress: "10.20.20.52"
     installDiskSelector:
-      wwid: "eui.002538b921b9e16a"
-    machineSpec:
-      secureboot: false
-      arch: "arm64"
-      mode: "metal"
-    kernelModules:
-      - name: vfio_pci
-      - name: uio_pci_generic
-    schematic:
-      overlay:
-        image: siderolabs/sbc-rockchip
-        name: rock5b
-      customization:
-        extraKernelArgs:
-          - -init_on_alloc # Less security, faster puter
-          - -init_on_free # Less security, faster puter
-          - -selinux # Less security, faster puter
-          - apparmor=0 # Less security, faster puter
-          - init_on_alloc=0 # Less security, faster puter
-          - init_on_free=0 # Less security, faster puter
-          - iommu=pt # PCI Passthrough
-          - mitigations=off # Less security, faster puter
-          - security=none # Less security, faster puter
-          - sysctl.kernel.kexec_load_disabled=1 # Meteor Lake CPU & Intel iGPU
-          - talos.auditd.disabled=1 # Less security, faster puter
-          - cpufreq.default_governor=performance # Default is powersave
-          - iommu.passthrough=1 # Less security, faster puter
-        systemExtensions:
-          officialExtensions:
-            - siderolabs/nfsd
-            - siderolabs/nfsrahead
-            - siderolabs/util-linux-tools
-            - siderolabs/nvme-cli
-            - siderolabs/iscsi-tools
-    controlPlane: true
-    volumes:
-      - name: EPHEMERAL
-        provisioning:
-          diskSelector:
-            match: disk.transport == 'nvme'
-          minSize: 2GB
-          maxSize: 75GB
-          grow: false
-    userVolumes:
-      - *ebsVolume
+      wwid: "naa.50026b738121a9bd"
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "00:e0:4c:68:00:4f"
+      - <<: *networkInterface
+        deviceSelector:
+          hardwareAddr: "30:24:a9:7a:c5:b5"
         dhcp: false
         addresses:
-          - "10.20.20.55/24"
-        routes:
-          - gateway: "10.20.20.1"
-            network: 0.0.0.0/0
-        mtu: 9000
-        vip:
-          ip: "10.20.20.100"
+          - "10.20.20.52/24"
+        vlans:
+          - <<: *vlan
+            addresses:
+              - "10.20.50.52/24"
+#  - &rockNode
+#    hostname: "haumea"
+#    ipAddress: "10.20.20.55"
+#    installDiskSelector:
+#      wwid: "eui.002538b921b9e16a"
+#    machineSpec:
+#      secureboot: false
+#      arch: "arm64"
+#      mode: "metal"
+#    kernelModules:
+#      - name: vfio_pci
+#      - name: uio_pci_generic
+#    schematic:
+#      overlay:
+#        image: siderolabs/sbc-rockchip
+#        name: rock5b
+#      customization:
+#        extraKernelArgs:
+#          - -init_on_alloc # Less security, faster puter
+#          - -init_on_free # Less security, faster puter
+#          - -selinux # Less security, faster puter
+#          - apparmor=0 # Less security, faster puter
+#          - init_on_alloc=0 # Less security, faster puter
+#          - init_on_free=0 # Less security, faster puter
+#          - iommu=pt # PCI Passthrough
+#          - mitigations=off # Less security, faster puter
+#          - security=none # Less security, faster puter
+#          - sysctl.kernel.kexec_load_disabled=1 # Meteor Lake CPU & Intel iGPU
+#          - talos.auditd.disabled=1 # Less security, faster puter
+#          - cpufreq.default_governor=performance # Default is powersave
+#          - iommu.passthrough=1 # Less security, faster puter
+#        systemExtensions:
+#          officialExtensions:
+#            - siderolabs/nfsd
+#            - siderolabs/nfsrahead
+#            - siderolabs/util-linux-tools
+#            - siderolabs/nvme-cli
+#            - siderolabs/iscsi-tools
+#    controlPlane: true
+#    volumes:
+#      - name: EPHEMERAL
+#        provisioning:
+#          diskSelector:
+#            match: disk.transport == 'nvme'
+#          minSize: 2GB
+#          maxSize: 75GB
+#          grow: false
+#    userVolumes:
+#      - *ebsVolume
+#    networkInterfaces:
+#      - deviceSelector:
+#          hardwareAddr: "00:e0:4c:68:00:4f"
+#        dhcp: false
+#        addresses:
+#          - "10.20.20.55/24"
+#        routes:
+#          - gateway: "10.20.20.1"
+#            network: 0.0.0.0/0
+#        mtu: 9000
+#        vip:
+#          ip: "10.20.20.100"
 
 # Global patches
 patches:

@@ -1,0 +1,26 @@
+---
+web:
+  port: ${GATUS_WEB_PORT}
+
+metrics: true
+
+storage:
+  type: postgres
+  path: "postgres://gatus:${GATUS_POSTGRES_PASS}@${POSTGRES_HOST}:${POSTGRES_PORT}/gatus"
+
+ui:
+  title: Status | Mizuto
+  header: Mizuto Cluster Status
+  logo: https://avatars.githubusercontent.com/u/20231417
+  link: https://github.com/squaredpotato
+  buttons:
+    - name: Github
+      link: https://github.com/squaredpotato
+    - name: Homelab
+      link: https://github.com/squaredpotato/home-ops
+
+connectivity:
+  checker:
+    target: 1.1.1.1:53
+    interval: 1m
+
