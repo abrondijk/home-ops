@@ -67,7 +67,7 @@ spec:
 
     route:
       app:
-        hostnames: ["zone-configurator.${SECRET_DOMAIN}"]
+        hostnames: ["zone-configurator.${PRIMARY_SECRET_DOMAIN}"]
         parentRefs:
           - name: internal-gateway
             namespace: network

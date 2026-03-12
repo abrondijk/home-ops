@@ -126,7 +126,7 @@ spec:
             namespace: network
             sectionName: https
         hostnames:
-          - &host "home.${SECRET_DOMAIN}"
+          - &host "home.${PRIMARY_SECRET_DOMAIN}"
         rules:
           - backendRefs:
               - identifier: gateway
@@ -149,7 +149,7 @@ spec:
             namespace: network
             sectionName: https
         hostnames:
-          - "home-code.${SECRET_DOMAIN}"
+          - "home-code.${PRIMARY_SECRET_DOMAIN}"
         rules:
           - matches:
               - path:

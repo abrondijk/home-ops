@@ -10,7 +10,7 @@ spec:
   interval: 1h
   values:
     fullnameOverride: k8s-gateway
-    domain: "${SECRET_DOMAIN}"
+    domain: "${PRIMARY_SECRET_DOMAIN} ${SECONDARRY_SECRET_DOMAIN} ${TERTIARY_SECRET_DOMAIN}"
     ttl: 1
     service:
       type: LoadBalancer

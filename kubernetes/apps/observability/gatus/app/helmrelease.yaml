@@ -87,8 +87,8 @@ spec:
         annotations:
           gatus.home-operations.com/enabled: "false"
         hostnames:
-          - "{{ .Release.Name }}.${SECRET_DOMAIN}"
-          - "status.${SECRET_DOMAIN}"
+          - "{{ .Release.Name }}.${PRIMARY_SECRET_DOMAIN}"
+          - "status.${PRIMARY_SECRET_DOMAIN}"
         parentRefs:
           - name: external
             namespace: network

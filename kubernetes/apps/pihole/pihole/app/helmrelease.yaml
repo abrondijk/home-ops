@@ -86,7 +86,7 @@ spec:
             namespace: network
             sectionName: https
         hostnames:
-          - &host "pihole.${SECRET_DOMAIN}"
+          - &host "pihole.${PRIMARY_SECRET_DOMAIN}"
         rules:
           - backendRefs:
               - identifier: gateway

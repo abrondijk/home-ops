@@ -1,0 +1,54 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "${PRIMARY_SECRET_DOMAIN/./-}-production"
+spec:
+  dnsNames:
+    - "${PRIMARY_SECRET_DOMAIN}"
+    - "*.${PRIMARY_SECRET_DOMAIN}"
+  duration: 160h
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  privateKey:
+    algorithm: ECDSA
+  secretName: "${PRIMARY_SECRET_DOMAIN/./-}-production-tls"
+  usages:
+    - digital signature
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "${SECONDARY_SECRET_DOMAIN/./-}-production"
+spec:
+  dnsNames:
+    - "${SECONDARY_SECRET_DOMAIN}"
+    - "*.${SECONDARY_SECRET_DOMAIN}"
+  duration: 160h
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  privateKey:
+    algorithm: ECDSA
+  secretName: "${SECONDARY_SECRET_DOMAIN/./-}-production-tls"
+  usages:
+    - digital signature
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "${TERTIARY_SECRET_DOMAIN/./-}-production"
+spec:
+  dnsNames:
+    - "${TERTIARY_SECRET_DOMAIN}"
+    - "*.${TERTIARY_SECRET_DOMAIN}"
+  duration: 160h
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  privateKey:
+    algorithm: ECDSA
+  secretName: "${TERTIARY_SECRET_DOMAIN/./-}-production-tls"
+  usages:
+    - digital signature

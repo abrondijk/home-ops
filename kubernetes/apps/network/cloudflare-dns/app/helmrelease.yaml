@@ -28,7 +28,10 @@ spec:
     sources: ["crd", "gateway-httproute"]
     txtPrefix: k8s.
     txtOwnerId: default
-    domainFilters: ["${SECRET_DOMAIN}"]
+    domainFilters:
+      - "${PRIMARY_SECRET_DOMAIN}"
+      - "${SECONDARRY_SECRET_DOMAIN}"
+      - "${TERTIARY_SECRET_DOMAIN}"
     serviceMonitor:
       enabled: true
     podAnnotations:

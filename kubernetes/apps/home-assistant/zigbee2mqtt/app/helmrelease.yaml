@@ -92,7 +92,7 @@ spec:
 
     route:
       app:
-        hostnames: ["zigbee.${SECRET_DOMAIN}"]
+        hostnames: ["zigbee.${PRIMARY_SECRET_DOMAIN}"]
         parentRefs:
           - name: internal-gateway
             namespace: network

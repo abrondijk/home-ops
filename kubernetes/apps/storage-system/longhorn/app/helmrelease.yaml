@@ -46,7 +46,7 @@ spec:
           namespace: network
           sectionName: https
       hostnames:
-        - "longhorn.${SECRET_DOMAIN}"
+        - "longhorn.${PRIMARY_SECRET_DOMAIN}"
       annotations:
         gatus.home-operations.com/endpoint: |-
           name: Longhorn Dashboard

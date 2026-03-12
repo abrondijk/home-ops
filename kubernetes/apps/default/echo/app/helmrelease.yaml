@@ -60,7 +60,10 @@ spec:
           - port: http
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.${SECRET_DOMAIN}"]
+        hostnames:
+          - "{{ .Release.Name }}.${PRIMARY_SECRET_DOMAIN}"
+          - "{{ .Release.Name }}.${SECONDARY_SECRET_DOMAIN}"
+          - "{{ .Release.Name }}.${TERTIARY_SECRET_DOMAIN}"
         parentRefs:
           - name: external-gateway
             namespace: network
