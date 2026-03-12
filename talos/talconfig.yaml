@@ -131,7 +131,7 @@ nodes:
           - <<: *vlan
             addresses:
               - "10.20.50.53/24"
-    schematic:
+    schematic: &intelDellSchematic
       customization:
         extraKernelArgs:
           - -init_on_alloc # Less security, faster puter
@@ -151,6 +151,23 @@ nodes:
           - iommu.passthrough=1 # Less security, faster puter
           - pci=nommconf # Apparently required: https://unix.stackexchange.com/questions/327730/what-causes-this-pcieport-00000003-0-pcie-bus-error-aer-bad-tlp#369090
         systemExtensions: *intelExtensions
+  - <<: *intelNode
+    hostname: "eris"
+    ipAddress: "10.20.20.54"
+    installDiskSelector:
+      wwid: "naa.50026b738121a9cf"
+    networkInterfaces:
+      - <<: *networkInterface
+        deviceSelector:
+          hardwareAddr: "00:e0:4c:68:14:1f"
+        dhcp: false
+        addresses:
+          - "10.20.20.54/24"
+        vlans:
+          - <<: *vlan
+            addresses:
+              - "10.20.50.54/24"
+    schematic: *intelDellSchematic
 #  - &rockNode
 #    hostname: "haumea"
 #    ipAddress: "10.20.20.55"
