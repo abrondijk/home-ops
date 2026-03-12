@@ -46,12 +46,12 @@ kind: Gateway
 metadata:
   name: external-gateway
   annotations:
-    external-dns.alpha.kubernetes.io/target: &hosts "external.${PRIMARY_SECRET_DOMAIN}"
+    external-dns.alpha.kubernetes.io/target: "external.${PRIMARY_SECRET_DOMAIN}"
 spec:
   gatewayClassName: envoy
   infrastructure:
     annotations:
-      external-dns.alpha.kubernetes.io/hostname: *hosts
+      external-dns.alpha.kubernetes.io/hostname: "external.${PRIMARY_SECRET_DOMAIN},external.${SECONDARY_SECRET_DOMAIN},external.${TERTIARY_SECRET_DOMAIN}"
       lbipam.cilium.io/ips: "10.20.50.104"
   listeners:
     - name: http
@@ -80,12 +80,12 @@ kind: Gateway
 metadata:
   name: internal-gateway
   annotations:
-    external-dns.alpha.kubernetes.io/target: &hosts "internal.${PRIMARY_SECRET_DOMAIN}"
+    external-dns.alpha.kubernetes.io/target: "internal.${PRIMARY_SECRET_DOMAIN}"
 spec:
   gatewayClassName: envoy
   infrastructure:
     annotations:
-      external-dns.alpha.kubernetes.io/hostname: *hosts
+      external-dns.alpha.kubernetes.io/hostname: "internal.${PRIMARY_SECRET_DOMAIN},internal.${SECONDARY_SECRET_DOMAIN},internal.${TERTIARY_SECRET_DOMAIN}"
       lbipam.cilium.io/ips: "10.20.50.103"
   listeners:
     - name: http
