@@ -1,0 +1,24 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app user-apps-vaultwarden
+  namespace: &namespace security
+spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./kubernetes/apps/security/vaultwarden/app
+  dependsOn:
+    - name: cluster-apps-longhorn
+      namespace: storage-system
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: *namespace
+  wait: true
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
