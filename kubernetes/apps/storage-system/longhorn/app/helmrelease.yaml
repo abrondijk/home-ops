@@ -3,7 +3,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: longhorn
-  namespace: longhorn-system
 spec:
   interval: 15m
   chart:
@@ -34,8 +33,10 @@ spec:
       v1DataEngine: false
       v2DataEngine: true
       allowRecurringJobWhileVolumeDetached: true
-      orphanResourceAutoDeletion: "replicaData;replicaInstance;engineInstance"
+      orphanResourceAutoDeletion: "replica-data;instance"
       backupTarget: &s3Target "s3://longhorn.bronlab.backup@eu-central-1/"
+      rebuildConcurrentSyncLimit: 2
+      defaultDataLocality: best-effort
     metrics:
       serviceMonitor:
         enabled: true

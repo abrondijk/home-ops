@@ -6,3 +6,5 @@ resources:
   - ./helmrelease.yaml
   - ./storageClassV2.yaml
   - ./longhorn-wasabi.sops.yaml
+  - ./longhorn-deprecated-wasabi.sops.yaml
+  - ./additionalBackupTargets.yaml

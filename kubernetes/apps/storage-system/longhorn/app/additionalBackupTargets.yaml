@@ -1,0 +1,9 @@
+---
+apiVersion: longhorn.io/v1beta2
+kind: BackupTarget
+metadata:
+  name: deprecated-wasabi
+spec:
+  backupTargetURL: s3://kubernetes.longhorn.backup@eu-central-1/
+  credentialSecret: longhorn-wasabi-deprecated-access
+  pollInterval: 5m0s
