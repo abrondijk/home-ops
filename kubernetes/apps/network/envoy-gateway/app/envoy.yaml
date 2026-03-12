@@ -46,7 +46,7 @@ kind: Gateway
 metadata:
   name: external-gateway
   annotations:
-    external-dns.alpha.kubernetes.io/target: &hosts "external.${PRIMARY_SECRET_DOMAIN},external.${SECONDARY_SECRET_DOMAIN},external.${TERTIARY_SECRET_DOMAIN}"
+    external-dns.alpha.kubernetes.io/target: &hosts "external.${PRIMARY_SECRET_DOMAIN}"
 spec:
   gatewayClassName: envoy
   infrastructure:
@@ -70,13 +70,17 @@ spec:
         certificateRefs:
           - kind: Secret
             name: ${PRIMARY_SECRET_DOMAIN/./-}-production-tls
+          - kind: Secret
+            name: ${SECONDARY_SECRET_DOMAIN/./-}-production-tls
+          - kind: Secret
+            name: ${TERTIARY_SECRET_DOMAIN/./-}-production-tls
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: internal-gateway
   annotations:
-    external-dns.alpha.kubernetes.io/target: &hosts "internal.${PRIMARY_SECRET_DOMAIN},internal.${SECONDARY_SECRET_DOMAIN},internal.${TERTIARY_SECRET_DOMAIN}"
+    external-dns.alpha.kubernetes.io/target: &hosts "internal.${PRIMARY_SECRET_DOMAIN}"
 spec:
   gatewayClassName: envoy
   infrastructure:
