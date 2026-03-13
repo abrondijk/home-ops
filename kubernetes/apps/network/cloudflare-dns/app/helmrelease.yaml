@@ -30,7 +30,7 @@ spec:
     txtOwnerId: default
     domainFilters:
       - "${PRIMARY_SECRET_DOMAIN}"
-      - "${SECONDARRY_SECRET_DOMAIN}"
+      - "${SECONDARY_SECRET_DOMAIN}"
       - "${TERTIARY_SECRET_DOMAIN}"
     serviceMonitor:
       enabled: true
