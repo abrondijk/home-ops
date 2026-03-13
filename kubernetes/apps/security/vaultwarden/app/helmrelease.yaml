@@ -86,8 +86,18 @@ spec:
             namespace: network
             sectionName: https
         rules:
+          # Do not publicly expose /admin endpoint.
+          - matches:
+              - path:
+                  value: /admin
+            filters:
+              - type: ExtensionRef
+                extensionRef:
+                  group: gateway.envoyproxy.io
+                  kind: HTTPRouteFilter
+                  name: not-found
           - backendRefs:
-              - identifier: app
+              - name: *app
                 port: *port
     persistence:
       config:
