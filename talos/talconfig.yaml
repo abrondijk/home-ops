@@ -80,7 +80,7 @@ nodes:
     networkInterfaces:
       - &networkInterface
         deviceSelector:
-          hardwareAddr: "f8:0d:ac:0a:8c:a6"
+          hardwareAddr: "02:26:26:02:28:3f"
         dhcp: false
         addresses:
           - "10.20.20.51/24"
@@ -107,7 +107,7 @@ nodes:
     networkInterfaces:
       - <<: *networkInterface
         deviceSelector:
-          hardwareAddr: "30:24:a9:7a:c5:b5"
+          hardwareAddr: "02:26:26:02:27:5a"
         dhcp: false
         addresses:
           - "10.20.20.52/24"
@@ -123,7 +123,7 @@ nodes:
     networkInterfaces:
       - <<: *networkInterface
         deviceSelector:
-          hardwareAddr: "8c:04:ba:a0:bc:c4"
+          hardwareAddr: "00:e0:4c:68:13:04"
         dhcp: false
         addresses:
           - "10.20.20.53/24"
