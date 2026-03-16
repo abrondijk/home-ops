@@ -41,13 +41,17 @@ spec:
       existingSecret: invoice-ninja-db
     pdfGenerator: "phantom"
     redis:
-      enabled: true
-#    externalRedis:
-#      host: dragonfly.database-system
-#      port: 6379
-#      database:
-#        default: "0"
-#        cache: "1"
+      enabled: false
+    externalRedis:
+      host: "redis-headless.database-system.svc.cluster.local"
+      port: 26379
+      sentinel: true
+      database:
+        default: "0"
+        cache: "1"
+    extraEnvVars:
+      - name: REDIS_SENTINEL_SERVICE
+        value: "redis-master"
     resources:
       requests:
         cpu: 100m
@@ -55,13 +59,6 @@ spec:
       limits:
         cpu: 400m
         memory: 512Mi
-    # containerSecurityContext:
-    #   runAsNonRoot: true
-    #   runAsUser: 1500
-    #   runAsGroup: 1500
-    #   capabilities:
-    #     drop:
-    #     - ALL
     http:
       image:
         repository: bitnamilegacy/nginx
@@ -79,19 +76,3 @@ spec:
       storage:
         existingClaim: invoice-ninja-storage
         enabled: true
-#    ingress:
-#      hostname: &host "erp.infinigon.systems"
-#      ingressClassName: nginx-external
-#      annotations:
-#        nginx.ingress.kubernetes.io/proxy-body-size: 100M
-#        nginx.ingress.kubernetes.io/enable-cors: "true"
-#        nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
-#        nignx.ingress.kubernetes.io/force-ssl-redirect: "true"
-#      hosts:
-#        - host: *host
-#          paths:
-#            - path: /
-#              pathType: Prefix
-#      tls:
-#        - hosts:
-#            - *host

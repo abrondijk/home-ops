@@ -6,3 +6,4 @@ resources:
   - ./helm-repository.yaml
   - ./invoice-ninja-secret.sops.yaml
   - ./helmrelease.yaml
+  - ./httproute.yaml
