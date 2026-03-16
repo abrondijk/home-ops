@@ -1,0 +1,97 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: invoice-ninja
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: invoiceninja
+      version: 0.10.2
+      sourceRef:
+        kind: HelmRepository
+        name: invoice-ninja
+      interval: 15m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 0
+  upgrade:
+    remediation:
+      retries: 0
+  values:
+    debug: false
+    image:
+      registry: docker.io
+      repository: invoiceninja/invoiceninja
+      tag: 5.12.39@sha256:bcba6a50b9c627d20188af34d7105a5bab00696dcfaa3b124d794f5c33bee037
+    existingSecret: &ninja-secret invoice-ninja
+    updateStrategy:
+      type: Recreate
+    nodeSelector:
+      kubernetes.io/arch: amd64
+    mariadb:
+      enabled: false
+    externalDatabase:
+      host: "invoice-ninja-db.infinigon"
+      user: invoice-ninja
+      database: invoice-ninja
+      port: 3306
+      existingSecret: invoice-ninja-db
+    pdfGenerator: "phantom"
+    redis:
+      enabled: true
+#    externalRedis:
+#      host: dragonfly.database-system
+#      port: 6379
+#      database:
+#        default: "0"
+#        cache: "1"
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 400m
+        memory: 512Mi
+    # containerSecurityContext:
+    #   runAsNonRoot: true
+    #   runAsUser: 1500
+    #   runAsGroup: 1500
+    #   capabilities:
+    #     drop:
+    #     - ALL
+    http:
+      image:
+        repository: bitnamilegacy/nginx
+        tag: 1.29.1-debian-12-r0
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: 2000m
+          memory: 4Gi
+    persistence:
+      public:
+        existingClaim: invoice-ninja-public
+      storage:
+        existingClaim: invoice-ninja-storage
+        enabled: true
+#    ingress:
+#      hostname: &host "erp.infinigon.systems"
+#      ingressClassName: nginx-external
+#      annotations:
+#        nginx.ingress.kubernetes.io/proxy-body-size: 100M
+#        nginx.ingress.kubernetes.io/enable-cors: "true"
+#        nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
+#        nignx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#      hosts:
+#        - host: *host
+#          paths:
+#            - path: /
+#              pathType: Prefix
+#      tls:
+#        - hosts:
+#            - *host

@@ -1,0 +1,43 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infinigon-apps-invoice-ninja-database
+  namespace: &namespace infinigon
+spec:
+  path: ./kubernetes/apps/infinigon/invoice-ninja/database
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: *namespace
+  dependsOn:
+    - name: cluster-apps-longhorn
+      namespace: storage-system
+  wait: true
+  interval: 15m
+  retryInterval: 1m
+  timeout: 5m
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infinigon-apps-invoice-ninja
+  namespace: &namespace infinigon
+spec:
+  path: ./kubernetes/apps/infinigon/invoice-ninja/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: *namespace
+  dependsOn:
+    - name: cluster-apps-longhorn
+      namespace: storage-system
+    - name: infinigon-apps-invoice-ninja-database
+  wait: true
+  interval: 15m
+  retryInterval: 1m
+  timeout: 5m
