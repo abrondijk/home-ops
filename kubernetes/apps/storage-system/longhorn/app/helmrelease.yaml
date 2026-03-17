@@ -28,6 +28,7 @@ spec:
     persistence:
       defaultDataLocality: best-effort
       reclaimPolicy: Retain
+      defaultClass: false
     defaultSettings:
       dataEngine: v2
       v1DataEngine: false
