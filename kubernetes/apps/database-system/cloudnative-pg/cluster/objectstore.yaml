@@ -1,0 +1,22 @@
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: production
+spec:
+  retentionPolicy: "30d"
+  configuration:
+    destinationPath: "s3://cnpg.bronlab.backup/"
+    endpointURL: https://s3.eu-central-1.wasabisys.com
+    s3Credentials:
+      accessKeyId:
+        name: &secret cnpg-wasabi
+        key: access-id
+      secretAccessKey:
+        name: *secret
+        key: access-key
+    data:
+      compression: snappy
+    wal:
+      compression: snappy
+      maxParallel: 8

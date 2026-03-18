@@ -1,0 +1,22 @@
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: legacy
+spec:
+  retentionPolicy: "30d"
+  configuration:
+    destinationPath: "s3://kubernetes.postgres-cloudnative.backup/"
+    endpointURL: https://s3.eu-central-1.wasabisys.com
+    s3Credentials:
+      accessKeyId:
+        name: &secret legacy-cnpg-wasabi
+        key: access-id
+      secretAccessKey:
+        name: *secret
+        key: access-key
+    data:
+      compression: bzip2
+    wal:
+      compression: bzip2
+      maxParallel: 8

@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: legacy-cnpg-wasabi
+type: Opaque
+stringData:
+  access-id: ENC[AES256_GCM,data:zZht8wFjjvfw8uRsKQBKPY3Yve8=,iv:40VFIgEs1lpUYX+dCNZKcdN2MXxeB43wCi9LScspp5U=,tag:ncpj35wdGGJT3/lmR+BPSA==,type:str]
+  access-key: ENC[AES256_GCM,data:cSbk01/JBKGYOZ5Gj0RIzCxEm6PyvJ2Vq6Zq45B9jIKtBkW4wJ+p4w==,iv:uBPck76HpFHglNNd9W8pH1w6zu+hsrD03I/9vwn5NcI=,tag:ezXXsxeawnZ2cq5TLi3WxA==,type:str]
+sops:
+  age:
+    - recipient: age18j2m4d43ks065lkuy40ge26xd86sss3289p0ntjklfmdns4pugxslq9jx0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBQaVk2aEp3SXQ5cXdqb3gy
+        VkU1M1Z4ZW9tTUpVejB3Q1pGRVd0Wnc4NVJBCnV1enp6WkNoc0RKWnhMdWFkV0E0
+        Uk9BczlHZTA2ZGdNTzh3aHhnQ1haekEKLS0tIHJ0ZVVFWlRMNGgyY3U5OFBSWUpV
+        VGplNmRqdWlrUWdleEZoK0Z5N28za28KTr0RPTfKZF+TK+b65ipr2yxsrTahJjVt
+        dSO+xVV34XCd9RiWMhXgENpSXO5p7lw7+3CwkrxTMrkXY1NZQdwx/w==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-03-18T20:43:43Z"
+  mac: ENC[AES256_GCM,data:4I0vDMf5rbJ9lN8+8MoLIOkiTjVfzMebVsiDkvn8BkgztT4i0YHYBxaTnk9BXC/MiA0etbamg5BxePKmKJxeABmBIqKYa2DLttP+VCIJ1Y4Tgbd+GCB0BquqrINkwn93/mWXq5hsBv16tkFkN25wG2Ymm1P6DzIcjsDx6jbcdio=,iv:PiejoBXIKCKkzySFeRt7IWpzTzkzvXHpfjAsfTkthj0=,tag:DlUHBoXLBu+ESgseXa5QYg==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.12.1

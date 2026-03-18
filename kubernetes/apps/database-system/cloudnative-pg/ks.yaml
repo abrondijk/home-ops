@@ -1,0 +1,63 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app cluster-apps-cloudnative-pg
+  namespace: &namespace database-system
+spec:
+  targetNamespace: *namespace
+  path: ./kubernetes/apps/database-system/cloudnative-pg/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app cluster-apps-cloudnative-pg-cluster
+  namespace: &namespace database-system
+spec:
+  targetNamespace: *namespace
+  dependsOn:
+    - name: cluster-apps-cloudnative-pg
+    - name: cluster-apps-openebs
+      namespace: storage-system
+  path: ./kubernetes/apps/database-system/cloudnative-pg/cluster
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+#---
+## yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+#apiVersion: kustomize.toolkit.fluxcd.io/v1
+#kind: Kustomization
+#metadata:
+#  name: &app cluster-apps-pgadmin
+#  namespace: &namespace database-system
+#spec:
+#  targetNamespace: *namespace
+#  path: ./kubernetes/apps/database-system/cloudnative-pg/admin
+#  prune: true
+#  sourceRef:
+#    kind: GitRepository
+#    name: flux-system
+#    namespace: flux-system
+#  dependsOn:
+#    - name: cluster-apps-cloudnative-pg
+#    - name: cluster-apps-cloudnative-pg-cluster
+#  interval: 30m
+#  retryInterval: 1m
+#  timeout: 5m

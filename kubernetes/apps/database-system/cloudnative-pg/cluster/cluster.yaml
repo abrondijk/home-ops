@@ -1,0 +1,61 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/postgresql.cnpg.io/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: production
+  annotations:
+    kyverno.io/ignore: "true"
+spec:
+  instances: 3
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17.5-0.3.0
+  enableSuperuserAccess: true
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 20Gi
+    storageClass: local-hostpath
+  superuserSecret:
+    name: cnpg-superuser
+  postgresql:
+    parameters:
+      max_connections: "600"
+      shared_buffers: 512MB
+    shared_preload_libraries:
+      - "vchord.so"
+  monitoring:
+    enablePodMonitor: true
+#  plugins:
+#    - name: barman-cloud.cloudnative-pg.io
+#      isWALArchiver: true
+#      enabled: true
+#      parameters:
+#        barmanObjectName: production
+#        serverName: &currentCluster production-v0
+  bootstrap:
+    recovery:
+      source: legacy
+  externalClusters:
+    - name: legacy
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: legacy
+          serverName: "production-v0"
+
+## Note: previousCluster needs to be set to the name of the previous
+## cluster when recovering from an existing cnpg cluster
+#  bootstrap:
+#    recovery:
+#      source: &previousCluster production-v0
+## Note: Optionally, specify a timestamp to backup from.
+## The operator selects the closest backup that was completed before that target.
+#      recoveryTarget:
+#       targetTime: "2025-10-21 23:00:00.00000+02"
+## Note: externalClusters is needed when recovering from an existing cnpg cluster
+#  externalClusters:
+#    - name: *previousCluster
+#      plugin:
+#        name: barman-cloud.cloudnative-pg.io
+#        parameters:
+#          barmanObjectName: production
+#          serverName: *previousCluster

@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cnpg-superuser
+stringData:
+  username: ENC[AES256_GCM,data:oe8UMweFlrQ8iYiGDA==,iv:2xSLYnJ92T6huzNsHLZANq2lAV1467kLIGWkR8tcMys=,tag:L5aIfeJyny+WSCaIgGPSnQ==,type:str]
+  password: ENC[AES256_GCM,data:t7qHjGc8JLZdWghDfvObHmUh3X1tGbMbthF0RF0l4S8=,iv:xRbbQ22ggCWlu7WkW9/aeLxwUEb61CTQP7iBjvOOON0=,tag:Um7RGJcW/jNHDXBEO4u4yg==,type:str]
+sops:
+  age:
+    - recipient: age18j2m4d43ks065lkuy40ge26xd86sss3289p0ntjklfmdns4pugxslq9jx0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBQaVk2aEp3SXQ5cXdqb3gy
+        VkU1M1Z4ZW9tTUpVejB3Q1pGRVd0Wnc4NVJBCnV1enp6WkNoc0RKWnhMdWFkV0E0
+        Uk9BczlHZTA2ZGdNTzh3aHhnQ1haekEKLS0tIHJ0ZVVFWlRMNGgyY3U5OFBSWUpV
+        VGplNmRqdWlrUWdleEZoK0Z5N28za28KTr0RPTfKZF+TK+b65ipr2yxsrTahJjVt
+        dSO+xVV34XCd9RiWMhXgENpSXO5p7lw7+3CwkrxTMrkXY1NZQdwx/w==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-03-18T20:55:01Z"
+  mac: ENC[AES256_GCM,data:arst4cLQaau2tHba5lEquqM2IEjRjW5/0IVO3xmg2yBjp9FQhkf8oTATUFxkmsosBfIaebUHCuotWE8iOsA0iLBonVH3ruTsRYoyVM905vHrxIQXrGp2QiFl0UUHqKUz7xireWSEYHuzuXsCdvwjmS4KBV59Y/nHmt8rHSqtSmI=,iv:H3bN6jyXVZAsr7Yyp6tkPrMxXb6HgDGK9L9RajcMTcA=,tag:K0oLiuz0JgntVOGiJsNngg==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.12.1
