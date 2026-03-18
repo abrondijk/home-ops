@@ -10,6 +10,6 @@ resources:
   - objectstore.yaml
   - legacy-object-store.yaml
   - cluster.yaml
-#  - scheduledbackup.yaml
+  - scheduledbackup.yaml
 #  - prometheusrule.yaml
 #  - grafanaDashboard.yaml
