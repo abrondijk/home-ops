@@ -8,7 +8,7 @@ metadata:
     kyverno.io/ignore: "true"
 spec:
   instances: 3
-  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17.5-0.3.0
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17.6-0.5.3
   enableSuperuserAccess: true
   primaryUpdateStrategy: unsupervised
   storage:
@@ -31,16 +31,16 @@ spec:
 #      parameters:
 #        barmanObjectName: production
 #        serverName: &currentCluster production-v0
-  bootstrap:
-    recovery:
-      source: legacy
-  externalClusters:
-    - name: legacy
-      plugin:
-        name: barman-cloud.cloudnative-pg.io
-        parameters:
-          barmanObjectName: legacy
-          serverName: "production-v0"
+#  bootstrap:
+#    recovery:
+#      source: legacy
+#  externalClusters:
+#    - name: legacy
+#      plugin:
+#        name: barman-cloud.cloudnative-pg.io
+#        parameters:
+#          barmanObjectName: legacy
+#          serverName: "production-v0"
 
 ## Note: previousCluster needs to be set to the name of the previous
 ## cluster when recovering from an existing cnpg cluster
