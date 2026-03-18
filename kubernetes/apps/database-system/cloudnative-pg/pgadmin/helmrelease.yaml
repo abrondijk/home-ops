@@ -37,13 +37,13 @@ spec:
           app:
             image:
               repository: dpage/pgadmin4
-              tag: "9.12"
+              tag: "9.13"
             env:
-              TZ: Europe/Amsterdam
+              TZ: "${TIMEZONE}"
               PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: "False"
             envFrom:
               - secretRef:
-                  name: "{{ .Release.Name }}-secret"
+                  name: "pgadmin-credentials"
             probes:
               liveness: &probes
                 enabled: true
@@ -87,14 +87,14 @@ spec:
             group: Internal
             guarded: true
         hostnames:
-          - "pgadmin.${SECRET_DOMAIN}"
+          - "pgadmin.${PRIMARY_SECRET_DOMAIN}"
         parentRefs:
-          - name: internal
+          - name: internal-gateway
             namespace: network
             sectionName: https
     persistence:
       config:
-        existingClaim: "{{ .Release.Name }}"
+        existingClaim: "pg-admin"
         globalMounts:
           - path: /var/lib/pgadmin
             readOnly: false
