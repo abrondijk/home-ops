@@ -3,7 +3,7 @@ kind: Secret
 metadata:
   name: cnpg-superuser
 stringData:
-  username: ENC[AES256_GCM,data:oe8UMweFlrQ8iYiGDA==,iv:2xSLYnJ92T6huzNsHLZANq2lAV1467kLIGWkR8tcMys=,tag:L5aIfeJyny+WSCaIgGPSnQ==,type:str]
+  username: ENC[AES256_GCM,data:z2zAJKwmCAs=,iv:cnJqxgYf6rWhweLN/iN8RwnB7uWlqN89eky7Co5U730=,tag:CRXqG/IN9/JlC+MhqPFG7Q==,type:str]
   password: ENC[AES256_GCM,data:t7qHjGc8JLZdWghDfvObHmUh3X1tGbMbthF0RF0l4S8=,iv:xRbbQ22ggCWlu7WkW9/aeLxwUEb61CTQP7iBjvOOON0=,tag:Um7RGJcW/jNHDXBEO4u4yg==,type:str]
 sops:
   age:
@@ -16,8 +16,8 @@ sops:
         VGplNmRqdWlrUWdleEZoK0Z5N28za28KTr0RPTfKZF+TK+b65ipr2yxsrTahJjVt
         dSO+xVV34XCd9RiWMhXgENpSXO5p7lw7+3CwkrxTMrkXY1NZQdwx/w==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-03-18T20:55:01Z"
-  mac: ENC[AES256_GCM,data:arst4cLQaau2tHba5lEquqM2IEjRjW5/0IVO3xmg2yBjp9FQhkf8oTATUFxkmsosBfIaebUHCuotWE8iOsA0iLBonVH3ruTsRYoyVM905vHrxIQXrGp2QiFl0UUHqKUz7xireWSEYHuzuXsCdvwjmS4KBV59Y/nHmt8rHSqtSmI=,iv:H3bN6jyXVZAsr7Yyp6tkPrMxXb6HgDGK9L9RajcMTcA=,tag:K0oLiuz0JgntVOGiJsNngg==,type:str]
+  lastmodified: "2026-03-19T09:07:43Z"
+  mac: ENC[AES256_GCM,data:GPuT7O9zWxFXWobQjA8YELnYYCKsrD1pmBURUmD36HGzJ+0F4o+7L/sTdPffAk4rdSHWnr1FpZI39MC0m0HuDSCgW603wFO7XjVvB8CG/EAzr3tTo4Zu2kjQ7zpvZOpb3up8uzT+WNdc64C8hkabVSEq0cjK5KQCZsXfQpIOrwQ=,iv:186vEYugP2eaZWCWoOlOkgwOwecrvRqBE20NSCww324=,tag:Lz5RzZNU+5Es/er/c5J6zQ==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.12.1
+  version: 3.12.2
