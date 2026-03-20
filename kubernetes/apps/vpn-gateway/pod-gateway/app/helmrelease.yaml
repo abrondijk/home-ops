@@ -71,6 +71,9 @@ spec:
       namespaceSelector:
         label: "vpn-routed-gateway"
 
+    routed_namespaces:
+      - vpn-routed
+
     settings:
       # -- If using a VPN, interface name created by it
       VPN_INTERFACE: wg0
