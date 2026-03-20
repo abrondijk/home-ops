@@ -1,0 +1,84 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: pod-gateway
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: pod-gateway
+      version: 7.1.1
+      interval: 15m
+      sourceRef:
+        kind: HelmRepository
+        name: angelnu
+        namespace: flux-system
+  #See https://github.com/angelnu/helm-charts/blob/main/charts/apps/pod-gatewa/values.yaml
+  values:
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/angelnu/pod-gateway
+              tag: v1.13.0@sha256:a5b032e15f7570493977b330a5a86dcffebb807d35685ad803e47afb62d105f2
+          gluetun:
+            enabled: true
+            dependsOn: main
+            image:
+              repository: docker.io/qmcgaw/gluetun
+              tag: v3.41.1@sha256:1a5bf4b4820a879cdf8d93d7ef0d2d963af56670c9ebff8981860b6804ebc8ab
+            env:
+              VPN_TYPE: wireguard
+              VPN_INTERFACE: wg0
+            envFrom:
+              - secretRef:
+                  name: vpn-authentication
+            securityContext:
+              capabilities:
+                add:
+                  - NET_ADMIN
+            livenessProbe:
+              exec:
+                command:
+                  - sh
+                  - -c
+                  - if [ $(wget -q -O- https://ipinfo.io/ip) != '$$LOCAL_WAN_IP' ]; then exit 0; else exit $?; fi
+              initialDelaySeconds: 30
+              periodSeconds: 60
+              failureThreshold: 3
+            resources:
+              requests:
+                cpu: 100m
+                memory: 64Mi
+              limits:
+                cpu: 175m
+                memory: 192Mi
+      webhook:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/angelnu/gateway-admision-controller
+              tag: dev@sha256:c894f191ab95a31cff8bfa4405c92b2a985403ee0c05e24e08acd96a5ed82043
+        pod:
+          annotations:
+            configmap.reloader.stakater.com/reload: vpn-gateway-pod-gateway
+            secret.reloader.stakater.com/reload: vpn-gateway-pod-gateway
+    webhook:
+      gatewayDefault: true
+      gatewayLabel: setGateway
+      gatewayAnnotation: setGateway
+      namespaceSelector:
+        label: "vpn-routed-gateway"
+
+    settings:
+      # -- If using a VPN, interface name created by it
+      VPN_INTERFACE: wg0
+      # -- Prevent non VPN traffic to leave the gateway
+      VPN_BLOCK_OTHER_TRAFFIC: true
+      # -- If VPN_BLOCK_OTHER_TRAFFIC is true, allow VPN traffic over this port
+      VPN_TRAFFIC_PORT: 51820
+      # -- Traffic to these IPs will be send through the K8S gateway
+      VPN_LOCAL_CIDRS: "10.0.10.0/24 10.0.20.0/24 10.0.30.0/24 10.42.0.0/16 10.43.0.0/16 172.16.0.0/12"
+      DNS_LOCAL_CIDRS: "local ${PRIMARY_SECRET_DOMAIN} ${SECONDARY_SECRET_DOMAIN} ${TERTIARY_SECRET_DOMAIN}"
+      NOT_ROUTED_TO_GATEWAY_CIDRS: "10.42.0.0/16 10.43.0.0/16 172.16.0.0/12"
