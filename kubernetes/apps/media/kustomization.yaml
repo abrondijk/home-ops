@@ -9,3 +9,5 @@ resources:
   - ./plex/ks.yaml
   - ./sonarr/ks.yaml
   - ./radarr/ks.yaml
+  - ./bazarr/ks.yaml
+  - ./tdarr/ks.yaml
