@@ -1,0 +1,105 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: tdarr
+  namespace: media
+spec:
+  interval: 15m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      tdarr:
+        pod:
+          affinity:
+            nodeAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 10
+                  preference:
+                    matchExpressions:
+                      - key: feature.node.kubernetes.io/cpu-model.vendor_id
+                        operator: In
+                        values:
+                          - Intel
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/haveagitgat/tdarr
+              tag: "2.58.02"
+              pullPolicy: IfNotPresent
+            env:
+              TZ: "${TIMEZONE}"
+              PUID: "1000"
+              PGID: "1000"
+              VERSION: "public"
+              serverIP: "0.0.0.0"
+              serverPort: &serverPort 8266
+              webUIPort: &webPort 8265
+              internalNode: "false"
+              nodeID: "Master"
+            resources:
+              requests:
+                cpu: 100m
+                memory: 500Mi
+              limits:
+                cpu: 3000m
+                memory: 6000Mi
+
+    service:
+      app:
+        controller: tdarr
+        type: LoadBalancer
+        loadBalancerIP: "${CLUSTER_TDARR_IP}"
+        ports:
+          http:
+            port: *webPort
+          server:
+            port: *serverPort
+
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.${PRIMARY_SECRET_DOMAIN}"
+        parentRefs:
+          - name: internal-gateway
+            namespace: network
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *webPort
+
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        existingClaim: tdarr
+        advancedMounts:
+          tdarr:
+            app:
+              - path: /app/configs
+                subPath: configs
+              - path: /app/server
+                subPath: server
+      medialibrary:
+        type: nfs
+        server: "${LAN_TRUENAS_IP}"
+        path: "${TRUENAS_MEBIALIBRARY_PATH}"
+      transcoding-cache:
+        type: nfs
+        server: "${LAN_TRUENAS_IP}"
+        path: /mnt/fast/tdarr_cache
+        globalMounts:
+          - path: /tdarr_cache
