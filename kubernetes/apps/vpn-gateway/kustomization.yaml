@@ -4,5 +4,5 @@ kind: Kustomization
 namespace: vpn-gateway
 components:
   - ../../components/common
-resources:
-  - ./pod-gateway/ks.yaml
+#resources:
+#  - ./pod-gateway/ks.yaml
