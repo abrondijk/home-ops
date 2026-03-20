@@ -14,6 +14,7 @@ data:
   CLUSTER_HOME_ASSISTANT_IP: 10.20.50.106
   CLUSTER_PLEX_IP: 10.20.50.107
   CLUSTER_DNS_IP: 10.20.50.108
+  CLUSTER_TDARR_IP: 10.20.50.109
   CLUSTER_PIOLE_IP: 10.20.50.120
   # External Services
   LAN_UNIFI_GATEWAY_IP: 10.20.0.1
@@ -25,6 +26,6 @@ data:
   REDIS_IMMICH_REDIS_DB: "1"
   REDIS_OUTLINE_REDIS_DB: "3"
   # Service URLs
-#  POSTGRES_HOST: "production-rw.database.svc.cluster.local"
-#  POSTGRES_PORT: "5432"
+  POSTGRES_HOST: "production-rw.database-system.svc.cluster.local"
+  POSTGRES_PORT: "5432"
 
