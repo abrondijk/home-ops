@@ -4,18 +4,19 @@ metadata:
   name: vpn-authentication
 type: Opaque
 stringData:
-  PROTONVPN_TIER: ENC[AES256_GCM,data:xw==,iv:Hd3Ohwb0yXlrli7Fr30ywUQ127glA8yazjxAiwcv3bU=,tag:BFhqw0v7Yk+KdbeOOzdAAQ==,type:str]
-  PROTONVPN_USERNAME: ENC[AES256_GCM,data:PRQYm+G5JRIgIKihZkWZcA==,iv:S3+wu4OO2Al71wiMiAQapm8I2ENGuzHhZhqrQrPoZg8=,tag:+N+lgX5OTD5mXk+5OLJozw==,type:str]
-  PROTONVPN_PASSWORD: ENC[AES256_GCM,data:oa7X2jhnXSmQD7dnNNjGeNW7cXrbLewT1Yf0/5ewzcI=,iv:OJV1dFU9Nwd8SaAGwPNzdBo6HzpaX2q2Dlog/sRjiSc=,tag:Hqj1TYFkVWvzPMbSUVso1w==,type:str]
-  PROTONVPN_SERVER: ENC[AES256_GCM,data:YPqE4hkM/MFHBaf9,iv:AZczMko1bvb/6dkNxF1VxTh9hp7Zo+8YJ3Y35X73dmE=,tag:beefVMiWXFU+rbOqnkFaOg==,type:str]
-  PROTONVPN_EXCLUDE_CIDRS: ENC[AES256_GCM,data:lDu+sCAHtgC5WNmnlGPl0Fw+ThN+fROBcRpB547XS3yPEVtl0pSpLIv+EyLZDvHYtMAbOHyh,iv:4A/D6lPDqUh3uP3NDYJqoOiZAeEAfMNLdRvQUJZWEW0=,tag:5zuuJBiq0qnw8GY5c3kvjg==,type:str]
-  WIREGUARD_PRIVATE_KEY: ENC[AES256_GCM,data:WXPJX0QrhXbeZrncYnhldLUhjuCinRC5j+oL6wH0ZBUmZSEncLCeFIleqGM=,iv:qplcNYixdDJYkJBpmcvDQEXuQ558uamB72Ah2H1+SQs=,tag:Cxbx0WbIVtfVW16zXhrVSw==,type:str]
-  LOCAL_WAN_IP: ENC[AES256_GCM,data:ZrfOy3Vs6AI8f8xeTA==,iv:NPT28VcML4OodagTf4hQ7bpUR2c3ijmfPh4JDQgTNek=,tag:ok3x7aoFY7Z/kUJU0kcf8w==,type:str]
+  #ENC[AES256_GCM,data:ywZGPr4Q7QPqpPpLiuoQUJTnyKkT,iv:eK4oY3IjH2mi9EgQZ3XtKEs8mrPxrf6qLk8tZMmCpEs=,tag:F8um3v+wVNWy49NBz42gfA==,type:comment]
+  #ENC[AES256_GCM,data:GArkNuwKE5wOTe6HQo9Shm85FOkN2sXHkDikfRIYkpSrfQPaWfI=,iv:Fu5z3s7GFk8g+qDDErpmU3HAUeqXp5Inlr1e6cmxf+c=,tag:6Qe/Drkd7f1wAeDJblYoQg==,type:comment]
+  #ENC[AES256_GCM,data:OYycwJvGeqn3FDsoiwyxmr6aI/aC1bQFvIpXtyEUQUiN5qkMuiGsubymp4bM0ZS7PP9Kb8CM,iv:PgwnqBVBL+83Z47C8xjNlC/ZrI+yIEPeb5C2VxIaX9s=,tag:VWxzgh8zf90egdmU2oZKOQ==,type:comment]
+  #ENC[AES256_GCM,data:Pg0iVfb1qkKcljxoN2Mxd3R1um5wQhl3M95YNGVnwiyRPpc=,iv:l58qev1auUPL70aBGGzyk94H1pJkIbdMmGfp9YZX57Q=,tag:OcdjWPKMr4q2ybxFYeA29Q==,type:comment]
+  #ENC[AES256_GCM,data:lerKz2AJLdCSOlqKWm3hrDCyPT40d7mfbxpEKDGdQpnsculKGnRZ65IJCxFGLS9e51EDGAtwLqr4S6JwzFHBCLjpAsVFE/ngCDIQ/ARRYytc,iv:imCaWbRnwahBK+++7qHtjVgjvI5kASvgOrjHK6WY2kM=,tag:ZC/pIxo0SwnXMaznGZOPxg==,type:comment]
   VPN_SERVICE_PROVIDER: ENC[AES256_GCM,data:NF/VgtEEm8f9,iv:R9jIicUll2wAjPzsFq2xY/z1+EaPq0E64oULRjff3ug=,tag:wyqVXfjlmFX/cDd8mB8rtg==,type:str]
   VPN_TYPE: ENC[AES256_GCM,data:dPtdyecDF0OH,iv:Fw/xXkXTBxO64ZaitUPygyHyp96hQJ15d4ZoYMQmvQA=,tag:CVKibGw+WUQtZMADjOsvFQ==,type:str]
-  VPN_INTERFACE: ENC[AES256_GCM,data:Ux+l,iv:sN62mhCW9PI7EmIMKy+jdJR0OudjIbn3L9CZyvQX0a4=,tag:I8F3OMX1bRBaUcOlNUOUjg==,type:str]
-  DOT: ENC[AES256_GCM,data:42ev,iv:3PRGBZDivNmhUNqWoS1/N5tJXNXD/vWJ/Ev7Ks+Aeb8=,tag:T/oCw2k9UnL6OMjwgCEwNA==,type:str]
+  WIREGUARD_PRIVATE_KEY: ENC[AES256_GCM,data:2uUh3koMT9zJLfLqVCgC4TDeWXF2iiXWb2LzqA3ZHwnihlcePYGUBE0WBoo=,iv:EeZuLJyeGMcCgrGfZCmW+wiDuVF3CpqibmCFajtRTO4=,tag:kU2Y5c1qDLY2wxk41zQZqg==,type:str]
   SERVER_COUNTRIES: ENC[AES256_GCM,data:p3q43V5sBiASN7A=,iv:KFyv7Ge2iVbbD8nIxekAOGaGsdS7ugK73oxlP2Zp3gg=,tag:kAwDHVFgAZdsyw9QIY+96g==,type:str]
+  LOCAL_WAN_IP: ENC[AES256_GCM,data:ZrfOy3Vs6AI8f8xeTA==,iv:NPT28VcML4OodagTf4hQ7bpUR2c3ijmfPh4JDQgTNek=,tag:ok3x7aoFY7Z/kUJU0kcf8w==,type:str]
+  #ENC[AES256_GCM,data:3HbToKbMEG9VOSeXBSwpXOyG8NCkkJPD9Q==,iv:QqYNmTGVB1QA74r7qX8+XeLFY3CaFY1u2BnOW0rURRU=,tag:dwutQKdPvXQOe3F4kWeITg==,type:comment]
+  VPN_INTERFACE: ENC[AES256_GCM,data:uc9v,iv:vUKlum0751s8HGnL0UKDEmnZxtSS0Yk4RmOsjxL6ecQ=,tag:YFYnS1t0/RVqGuesq8HjUA==,type:str]
+#  DNS_UPSTREAM_RESOLVER_TYPE: doh
 sops:
   age:
     - recipient: age18j2m4d43ks065lkuy40ge26xd86sss3289p0ntjklfmdns4pugxslq9jx0
@@ -27,8 +28,8 @@ sops:
         VGplNmRqdWlrUWdleEZoK0Z5N28za28KTr0RPTfKZF+TK+b65ipr2yxsrTahJjVt
         dSO+xVV34XCd9RiWMhXgENpSXO5p7lw7+3CwkrxTMrkXY1NZQdwx/w==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-03-20T09:54:33Z"
-  mac: ENC[AES256_GCM,data:PEffigYAxp/LWzLf8at2Rgo6OapmTvJ6GkR08eu12t/q0JrQfWcgL6Xwoq656MBJvdcx5+EBWZPopeG2EqMz3XwlauuMdfXkibmSv/Ou67cH0ChaUIY+2Q33vVBF2wTXZbav5u/gVCrAoENCxr6Je8jzDgB/BYpYQFe7A+HnU5M=,iv:Yd8N3ZNcgy+vQD5IQ/kqpTPlFgcFCpmVxGUOUzSXG8U=,tag:/MMFWALcpSjjnE3TRcgnzQ==,type:str]
+  lastmodified: "2026-03-20T12:19:49Z"
+  mac: ENC[AES256_GCM,data:rYDgmlHe5YhrkVf+DMmlsjhC4cLvaFqdplNxoEYt5CScFXZTvHCKF0uyTWJ1TWQy7+WWlI4A6/9qDYDtffZNLKSLpV4R4Ndr8FIFKturLp67UP5sJEQMKTcbx5ck1J/gZATXRqLUVxAhgqxPJyvOSpI6iCDmKF5HHcO3219X20Q=,iv:jC7M500quTONR9IJBpqvBtbFtd4U6AltniMarbW6s7Q=,tag:QzRaMV6E56onc2g8lcwgmQ==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.12.2
