@@ -1,0 +1,208 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: minecraft-external
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: minecraft
+      version: 5.1.2
+      sourceRef:
+        kind: HelmRepository
+        name: itzg
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  valuesFrom:
+    - kind: ConfigMap
+      name: helm-values-external-minecraft
+      valuesKey: values.yaml
+  values:
+    # https://github.com/itzg/minecraft-server-charts/blob/master/charts/minecraft/values.yaml
+    image:
+      repository: itzg/minecraft-server
+      tag: 2026.3.2
+      pullPolicy: IfNotPresent
+    replicaCount: 1
+    resources:
+      requests:
+        memory: 4096M
+        cpu: 500m
+    strategyType: Recreate
+    livenessProbe:
+      command:
+        - mc-health
+      initialDelaySeconds: 90
+      periodSeconds: 5
+      failureThreshold: 20
+      successThreshold: 1
+      timeoutSeconds: 1
+    readinessProbe:
+      command:
+        - mc-health
+      initialDelaySeconds: 90
+      periodSeconds: 5
+      failureThreshold: 20
+      successThreshold: 1
+      timeoutSeconds: 1
+    startupProbe:
+      command:
+        - mc-health
+      enabled: false
+      failureThreshold: 60
+      periodSeconds: 10
+    podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 3000
+      runAsNonRoot: true
+      fsGroup: 2000
+      seccompProfile:
+        type: RuntimeDefault
+    securityContext:
+      capabilities:
+        drop:
+          - ALL
+      readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+    rconServiceAnnotations: &sharedIP
+      lbipam.cilium.io/sharing-key: "true"
+    serviceAnnotations: *sharedIP
+    minecraftServer:
+      # This must be overridden, since we can't accept this for the user.
+      eula: "TRUE"
+      # One of: LATEST, SNAPSHOT, or a specific version (ie: "1.7.9").
+      version: "1.21.8"
+      # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE"
+      type: "FABRIC"
+      # If type is set to FORGE, this sets the version; this is ignored if forgeInstallerUrl is set
+      forgeVersion:
+      # If type is set to SPONGEVANILLA, this sets the version
+      spongeVersion:
+      # If type is set to FORGE, this sets the URL to download the Forge installer
+      forgeInstallerUrl:
+      # If type is set to BUKKIT, this sets the URL to download the Bukkit package
+      bukkitDownloadUrl:
+      # If type is set to SPIGOT, this sets the URL to download the Spigot package
+      spigotDownloadUrl:
+      # If type is set to PAPER, this sets the URL to download the PaperSpigot package
+      paperDownloadUrl:
+      # If type is set to FTBA, this sets the modpack to run
+      ftbModpackId:
+      # If type is set to FTBA and a modpack is set, this sets the version to run
+      ftbModpackVersionId:
+      # If type is set to CURSEFORGE, this sets the server mod to run. Can also provide url to curseforge package.
+      cfServerMod:
+      # Set to true if running Feed The Beast and get an error like "unable to launch forgemodloader"
+      ftbLegacyJavaFixer: false
+      # One of: peaceful, easy, normal, and hard
+      difficulty: normal
+      # A server icon URL for server listings. Auto-scaled and transcoded.
+      icon:
+      # Max connected players.
+      maxPlayers: 20
+      # This sets the maximum possible size in blocks, expressed as a radius, that the world border can obtain.
+      maxWorldSize: 10000
+      # Allows players to travel to the Nether.
+      allowNether: true
+      # Allows server to announce when a player gets an achievement.
+      announcePlayerAchievements: true
+      # Enables command blocks.
+      enableCommandBlock: true
+      # If true, players will always join in the default gameMode even if they were previously set to something else.
+      forcegameMode: true
+      # Defines whether structures (such as villages) will be generated.
+      generateStructures: true
+      # If set to true, players will be set to spectator mode if they die.
+      hardcore: false
+      # The maximum height in which building is allowed.
+      maxBuildHeight: 256
+      # The maximum number of milliseconds a single tick may take before the server watchdog stops the server with the message. -1 disables this entirely.
+      maxTickTime: -1
+      # Determines if animals will be able to spawn.
+      spawnAnimals: true
+      # Determines if monsters will be spawned.
+      spawnMonsters: true
+      # Determines if villagers will be spawned.
+      spawnNPCs: true
+      # Sets the area that non-ops can not edit (0 to disable)
+      spawnProtection: 16
+      # Max view distance (in chunks).
+      viewDistance: 20
+      # One of: creative, survival, adventure, spectator
+      gameMode: survival
+      # If true, enable player-vs-player damage.
+      pvp: true
+      # One of: DEFAULT, FLAT, LARGEBIOMES, AMPLIFIED, CUSTOMIZED
+      levelType: CUSTOMIZED
+      # When levelType == FLAT or CUSTOMIZED, this can be used to further customize map generation.
+      # ref: https://hub.docker.com/r/itzg/minecraft-server/
+      generatorSettings:
+      # If set, this URL will be downloaded at startup and used as a starting point
+      downloadWorldUrl:
+      # force re-download of server file
+      forceReDownload: false
+      # If set, the modpack at this URL will be downloaded at startup
+      downloadModpackUrl:
+      # If true, old versions of downloaded mods will be replaced with new ones from downloadModpackUrl
+      removeOldMods: false
+      # A list of VanillaTweaks Share Codes to download. (https://vanillatweaks.net/share#wUq1iz => "wUq1iz")
+      vanillaTweaksShareCodes: []
+      # Optional URI to a resource pack. The player may choose to use it.
+      resourcePackUrl:
+      # Optional SHA-1 digest of the resource pack, in lowercase hexadecimal.
+      # It is recommended to specify this, because it is used to verify the integrity of the resource pack.
+      resourcePackSha:
+      # When true, players will be prompted for a response and will be disconnected if they decline the required pack
+      resourcePackEnforce: false
+      # Check accounts against Minecraft account service.
+      onlineMode: true
+      # If you adjust this, you may need to adjust resources.requests above to match.
+      memory: 4096M
+      # General JVM options to be passed to the Minecraft server invocation
+      jvmOpts: ""
+      # Options like -X that need to proceed general JVM options
+      jvmXXOpts: ""
+      # By default, the server configuration will be created and set based on the following environment variables, but only the first time the server is started
+      # If you would like to override the server configuration each time the container starts up, you can set this to true
+      # see https://github.com/itzg/docker-minecraft-server#server-configuration
+      overrideServerProperties: true
+      # DEPRECATED: use top-level rconServiceAnnotations instead
+      serviceAnnotations: {}
+      serviceType: LoadBalancer
+      ## Set the port used if the serviceType is NodePort
+      nodePort:
+      # Set the external port of the service, usefull when using the LoadBalancer service type
+      servicePort: 25565
+      clusterIP:
+      loadBalancerIP: "${CLUSTER_GAMES_IP}"
+      # List with URLs and paths to jar files, additionally may be a directory with jars
+      # This works for both mods and plugins depending on server type
+      modUrls: []
+      pluginUrls: []
+
+      rcon:
+        # If you enable this, make SURE to change your password below.
+        enabled: true
+        port: 25575
+        existingSecret: minecraft-rcon-external
+        secretKey: rcon-password
+        serviceType: LoadBalancer
+        ## Set the external port if the rcon serviceType is NodePort
+        nodePort:
+        clusterIP:
+        loadBalancerIP: "${CLUSTER_GAMES_IP}"
+
+    persistence:
+      dataDir:
+        enabled: true
+        existingClaim: minecraft-external
