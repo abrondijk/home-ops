@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: curseforge
+type: Opaque
+stringData:
+  apikey: ENC[AES256_GCM,data:tsDNcuQ93/tup7ehV6Ik60RjV/OIX3dcGTWZzi6z/lOLf2vZCMYSrXIeHfn2plgxXVUJTuv0Eq6K1Fx8,iv:bjm4o4mfMe4/HND35KL4iCGoZBY2fDUN4MIXPZyEdIg=,tag:GVpJ53s0w+Ji8cwVc8e3hg==,type:str]
+sops:
+  age:
+    - recipient: age18j2m4d43ks065lkuy40ge26xd86sss3289p0ntjklfmdns4pugxslq9jx0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBMUlc5aWEyNmJrZFFxQmNM
+        KzNxajBOMG0yUWNqYWgxdW9mSHNWMTdhMUFFCjZySmx1UWhGZ3UyMHZza0RhMWEx
+        elVsOGhPL2NHekRXMDk4N1AySnhQRHMKLS0tIDBBU2dGSU1Camh3YzlkcVR6VUd0
+        dzFZUnhCb1pubjhnTTlySmRkQWtpcm8KOYqfY87HnKnHG4XL7xGm+fljYijMCygZ
+        nHmlnehIGlioh7bMDWwozQ5YSvmElZOydspw9EesDrHV4xEkSZgoKw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-03-22T08:25:22Z"
+  mac: ENC[AES256_GCM,data:9ZvsGRzZaMa/Ho/3pUEYs/ODQqaD5qZ55Vd98P6txLykx7dPTAE7rrvvIuq26Wjp8GSJ7wa42EeevdAVGlietxnsBsgIVVMQIc8bOhCtpK0ViI4z1SjIInMUErSaYCOQw8ghB4s5VKYRZTWn3uwGfUOu1xmVOOK9JNMUgVp7Q1Q=,iv:3ylNRh7/WbTv9cPoPRsMVno9+H+jiVAMBeeT6L+cIn8=,tag:3VX48l8pcOQdGaZMZmqqRQ==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.12.2

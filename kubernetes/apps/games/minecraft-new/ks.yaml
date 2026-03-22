@@ -1,0 +1,21 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps-minecraft-new
+  namespace: &namespace games
+spec:
+  dependsOn:
+    - name: cluster-apps-longhorn
+      namespace: storage-system
+  path: ./kubernetes/apps/games/minecraft-new/app
+  targetNamespace: *namespace
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m

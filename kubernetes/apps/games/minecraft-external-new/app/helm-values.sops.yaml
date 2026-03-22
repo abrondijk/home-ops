@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: helm-values-external-minecraft
+data:
+  values.yaml: ENC[AES256_GCM,data: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,iv:1HYk+xIv3orEsYSZ+wp//ORH1902o+a+spEyG+SeBoc=,tag:khWFzsjqZcrFpAYmOCXHMw==,type:str]
+#      CF_API_KEY:
+#        valueFrom:
+#          secretKeyRef:
+#            name: curseforge
+#            key: apikey
+sops:
+  age:
+    - recipient: age18j2m4d43ks065lkuy40ge26xd86sss3289p0ntjklfmdns4pugxslq9jx0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBjYmZtSU80UnEvVy9IaHM4
+        RTF3Vm5LZlNIQUlSQzZaUC9nMUE0QThoT0hvCjZrQ2VudHg3NVNRODJFRDIwL2p6
+        UE03S1R5ZHUzMGs4eEZzSlo3aTFJdVUKLS0tIE1WYjV6TXdRQ2Fjd2dIQ2Y0Z0or
+        dEZTUWdGUVVVU2FhbHVjd2ZiMEtMRzgKcG2Q59bmaLmWsyipj7V61U9+7Zt8VEd0
+        aFaHMNBzr3mfoGu0y+LPUUymdeGiLW4iX/E08AP1EYoYDTCPM8Bd3g==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-03-22T08:54:45Z"
+  mac: ENC[AES256_GCM,data:FKriHICdhloQc6hA7mbaifuNFktXA4+EnIKgS6Y1s5krywJTr5lcpjV5a+cS3jQWnClZU1TFvMcHoE+Vnb3IlD81Xruo4EcC6XtGscLqU0QTjwBZlFKOVDj7Zyn/IO8ofoYBd3aHpo+i7kl6GzhYCvmsec0MIAXosfNlpIoOz9U=,iv:p/72BunpWOHxnmoA0FRBk9hq/cawly+5h2KUdk0+rCM=,tag:2wqput12evtaz/n/K9tBYg==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.12.2
