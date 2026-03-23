@@ -1,0 +1,30 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/k8s.cni.cncf.io/networkattachmentdefinition_v1.json
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: vpn
+spec:
+  config: |-
+    {
+      "cniVersion": "0.3.1",
+      "name": "vpn",
+      "plugins": [
+        {
+          "type": "macvlan",
+          "master": "${NETWORK_VPN_NIC}",
+          "mode": "bridge",
+          "ipam": {
+            "type": "static",
+            "routes": [
+              {"dst": "10.20.0.0/24", "gw": "${NETWORK_HOMELAB_GATEWAY}"},
+              {"dst": "10.20.10.0/24", "gw": "${NETWORK_HOMELAB_GATEWAY}"},
+              {"dst": "10.20.20.0/24", "gw": "${NETWORK_HOMELAB_GATEWAY}"},
+              {"dst": "10.20.30.0/24", "gw": "${NETWORK_HOMELAB_GATEWAY}"},
+              {"dst": "10.20.40.0/24", "gw": "${NETWORK_HOMELAB_GATEWAY}"},
+              {"dst": "10.20.50.0/24", "gw": "${NETWORK_BGP_GATEWAY}"}
+            ]
+          }
+        }
+      ]
+    }

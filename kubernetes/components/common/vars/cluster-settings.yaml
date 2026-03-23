@@ -29,4 +29,11 @@ data:
   # Service URLs
   POSTGRES_HOST: "production-rw.database-system.svc.cluster.local"
   POSTGRES_PORT: "5432"
+  # Networking
+  NETWORK_VPN_NIC: "ethSel0.60"
+  NETWORK_HOMELAB_GATEWAY: "10.20.20.1"
+  NETWORK_BGP_GATEWAY: "10.20.50.1"
+  NETWORK_VPN_GATEWAY: "10.20.60.1"
+  NETWORK_CLUSTER_POD_CIDR: "10.42.0.0/16"
+  NETWORK_CLUSTER_SERVICE_CIDR: "10.43.0.0/16"
 

@@ -12,3 +12,4 @@ resources:
   - ./spegel/ks.yaml
   - ./node-feature-discovery/ks.yaml
   - ./intel-device-plugins/ks.yaml
+  - ./multus/ks.yaml
