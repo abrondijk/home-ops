@@ -9,14 +9,14 @@ stringData:
   #ENC[AES256_GCM,data:OYycwJvGeqn3FDsoiwyxmr6aI/aC1bQFvIpXtyEUQUiN5qkMuiGsubymp4bM0ZS7PP9Kb8CM,iv:PgwnqBVBL+83Z47C8xjNlC/ZrI+yIEPeb5C2VxIaX9s=,tag:VWxzgh8zf90egdmU2oZKOQ==,type:comment]
   #ENC[AES256_GCM,data:Pg0iVfb1qkKcljxoN2Mxd3R1um5wQhl3M95YNGVnwiyRPpc=,iv:l58qev1auUPL70aBGGzyk94H1pJkIbdMmGfp9YZX57Q=,tag:OcdjWPKMr4q2ybxFYeA29Q==,type:comment]
   #ENC[AES256_GCM,data:lerKz2AJLdCSOlqKWm3hrDCyPT40d7mfbxpEKDGdQpnsculKGnRZ65IJCxFGLS9e51EDGAtwLqr4S6JwzFHBCLjpAsVFE/ngCDIQ/ARRYytc,iv:imCaWbRnwahBK+++7qHtjVgjvI5kASvgOrjHK6WY2kM=,tag:ZC/pIxo0SwnXMaznGZOPxg==,type:comment]
-  VPN_SERVICE_PROVIDER: ENC[AES256_GCM,data:NF/VgtEEm8f9,iv:R9jIicUll2wAjPzsFq2xY/z1+EaPq0E64oULRjff3ug=,tag:wyqVXfjlmFX/cDd8mB8rtg==,type:str]
-  VPN_TYPE: ENC[AES256_GCM,data:dPtdyecDF0OH,iv:Fw/xXkXTBxO64ZaitUPygyHyp96hQJ15d4ZoYMQmvQA=,tag:CVKibGw+WUQtZMADjOsvFQ==,type:str]
-  WIREGUARD_PRIVATE_KEY: ENC[AES256_GCM,data:2uUh3koMT9zJLfLqVCgC4TDeWXF2iiXWb2LzqA3ZHwnihlcePYGUBE0WBoo=,iv:EeZuLJyeGMcCgrGfZCmW+wiDuVF3CpqibmCFajtRTO4=,tag:kU2Y5c1qDLY2wxk41zQZqg==,type:str]
-  SERVER_COUNTRIES: ENC[AES256_GCM,data:p3q43V5sBiASN7A=,iv:KFyv7Ge2iVbbD8nIxekAOGaGsdS7ugK73oxlP2Zp3gg=,tag:kAwDHVFgAZdsyw9QIY+96g==,type:str]
-  LOCAL_WAN_IP: ENC[AES256_GCM,data:ZrfOy3Vs6AI8f8xeTA==,iv:NPT28VcML4OodagTf4hQ7bpUR2c3ijmfPh4JDQgTNek=,tag:ok3x7aoFY7Z/kUJU0kcf8w==,type:str]
+  #ENC[AES256_GCM,data:EJQfzvS9/CZ9U3VjVSgZ0lA15bpgcOLwx0UUHW/cgMqU,iv:f9R9EdcmhjoMVIsbWwKBKG6UvxKEYnSsQ27NzKeeoX4=,tag:iHEe3Be24XpXw7MD0vYV6Q==,type:comment]
+  #ENC[AES256_GCM,data:sS3TxYW+4oCOkNLJJuRjRafiHDd4,iv:R3lFUtdl8zDmhu8p6DxNR8ja0yRHrzXU3UndlLbXD24=,tag:sn0ZS3F3+Fo683mXNnc7Vw==,type:comment]
+  #ENC[AES256_GCM,data:b3iUBlG2CQXg+P1D9SWhu+GaJwUKPnYSs9H+/QiKfA==,iv:PnT5sK6bC8vaE/rczDwD7QANrZ84BL85fOZTdv53OZg=,tag:POXdVNJ3Q9Z344AodoZQPA==,type:comment]
+  #ENC[AES256_GCM,data:Spii1vVMUbSP20bCEiK5Y4g/a/0ig3C8XkXIskk=,iv:U9Ub37ixrTLbW4zozzYLrKVODopZ2obeffICRjkiPpY=,tag:yqOuhF2BZxETUxtBfRpGpQ==,type:comment]
   #ENC[AES256_GCM,data:3HbToKbMEG9VOSeXBSwpXOyG8NCkkJPD9Q==,iv:QqYNmTGVB1QA74r7qX8+XeLFY3CaFY1u2BnOW0rURRU=,tag:dwutQKdPvXQOe3F4kWeITg==,type:comment]
-  VPN_INTERFACE: ENC[AES256_GCM,data:uc9v,iv:vUKlum0751s8HGnL0UKDEmnZxtSS0Yk4RmOsjxL6ecQ=,tag:YFYnS1t0/RVqGuesq8HjUA==,type:str]
-#  DNS_UPSTREAM_RESOLVER_TYPE: doh
+  #ENC[AES256_GCM,data:ojLD9pFNBruXVN16ioXhq2J8Sgw=,iv:944zD65/Dp3+OFuGpRErKMP1BqPr043MA/f4opHvCSU=,tag:acyC8i2v18N6qauC2cZauw==,type:comment]
+  #ENC[AES256_GCM,data:16zjbJzdkj2nWOGkPh6C2Q6UWUC9Tsl8LNSZyXkvbM2w,iv:5b4FZ8N76KyXwh5ApXwemHpbz108pKYOxJxChXUcaqM=,tag:lvLXMgVod3xcP7LKh8cJyQ==,type:comment]
+  WIREGUARD_PRIVATE_KEY: ENC[AES256_GCM,data:1u4sYGanN41MUM3c/P/y4nRw24dNxYG8g9GnK5AyoQ4ZPsxT0p3FxVBcqcA=,iv:e/5v2Zp553MYSI0d/e0smqY+ISYG/HOQcDcjdXjANxM=,tag:EYce4CEus8YTwd7sS2suGQ==,type:str]
 sops:
   age:
     - recipient: age18j2m4d43ks065lkuy40ge26xd86sss3289p0ntjklfmdns4pugxslq9jx0
@@ -28,8 +28,8 @@ sops:
         VGplNmRqdWlrUWdleEZoK0Z5N28za28KTr0RPTfKZF+TK+b65ipr2yxsrTahJjVt
         dSO+xVV34XCd9RiWMhXgENpSXO5p7lw7+3CwkrxTMrkXY1NZQdwx/w==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-03-20T12:19:49Z"
-  mac: ENC[AES256_GCM,data:rYDgmlHe5YhrkVf+DMmlsjhC4cLvaFqdplNxoEYt5CScFXZTvHCKF0uyTWJ1TWQy7+WWlI4A6/9qDYDtffZNLKSLpV4R4Ndr8FIFKturLp67UP5sJEQMKTcbx5ck1J/gZATXRqLUVxAhgqxPJyvOSpI6iCDmKF5HHcO3219X20Q=,iv:jC7M500quTONR9IJBpqvBtbFtd4U6AltniMarbW6s7Q=,tag:QzRaMV6E56onc2g8lcwgmQ==,type:str]
+  lastmodified: "2026-03-26T17:40:38Z"
+  mac: ENC[AES256_GCM,data:Slj/axMiUDzJeL7V7xl/rPgsC5rCLWDFLPgH4k6qV8W/PHwHIhH9Q/tKG3Q7eDUW4op09rS9zS5SRDUQXkJeKbUqvgfATi7k4OmNwnvPMIks2mIUTyDSl0B4soCWWvDgD57+e0BBpGSkcJR6JPuLEK/NzVYt3LtVgWASki7kaPY=,iv:8WISgB1c68taUAmk9S/NbYNICSWYKq+wkUm/Rm6XVSk=,tag:JCvEXJwwzGq7TF7zRxqNWQ==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.12.2

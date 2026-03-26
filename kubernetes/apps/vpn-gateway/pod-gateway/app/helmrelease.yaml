@@ -24,38 +24,52 @@ spec:
               tag: v1.13.0@sha256:a5b032e15f7570493977b330a5a86dcffebb807d35685ad803e47afb62d105f2
           gluetun:
             enabled: true
-            dependsOn: main
             image:
-              repository: docker.io/qmcgaw/gluetun
-              tag: v3.41.1@sha256:1a5bf4b4820a879cdf8d93d7ef0d2d963af56670c9ebff8981860b6804ebc8ab
-            env:
-              TZ: "${TIMEZONE}"
-              LOG_LEVEL: "debug"
-            envFrom:
-              - secretRef:
-                  name: vpn-authentication
+              repository: qmcgaw/gluetun
+              tag: v3.41.1
+            probes:
+              startup:
+                enabled: false
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  exec:
+                    command:
+                      - sh
+                      - -c
+                      - "wget -nv -t1 -O - 'http://127.0.0.1:9999' || exit 1"
+                  initialDelaySeconds: 30
+                  timeoutSeconds: 2
+                  failureThreshold: 3
             securityContext:
               privileged: true
               capabilities:
                 add:
                   - NET_ADMIN
-#                  - SYS_MODULE
-            livenessProbe:
-              exec:
-                command:
-                  - sh
-                  - -c
-                  - if [ $(wget -q -O- https://ipinfo.io/ip) != '$$LOCAL_WAN_IP' ]; then exit 0; else exit $?; fi
-              initialDelaySeconds: 30
-              periodSeconds: 60
-              failureThreshold: 3
             resources:
               requests:
-                cpu: 100m
-                memory: 64Mi
+                memory: 128Mi
               limits:
-                cpu: 175m
-                memory: 192Mi
+                memory: 256Mi
+            envFrom:
+              - secretRef:
+                  name: vpn-authentication
+            env:
+              TZ: "${TIMEZONE}"
+              DOT: "off"
+              FIREWALL_INPUT_PORTS: "8080,8388,8888,9999"
+              FIREWALL_OUTBOUND_SUBNETS: "10.42.0.0/16,10.43.0.0/16,10.20.20.0/24"
+              HTTPPROXY: "on"
+              IPV6_DISABLED: "true"
+              PORT_FORWARD_ONLY: "on"
+              SERVER_COUNTRIES: "Netherlands"
+              SHADOWSOCKS: "on"
+              VPN_PORT_FORWARDING: "on"
+              VPN_PORT_FORWARDING_PROVIDER: protonvpn
+              VPN_SERVICE_PROVIDER: protonvpn
+              VPN_TYPE: wireguard
+              LOG_LEVEL: "debug"
       webhook:
         containers:
           main:
@@ -66,6 +80,16 @@ spec:
           annotations:
             configmap.reloader.stakater.com/reload: vpn-gateway-pod-gateway
             secret.reloader.stakater.com/reload: vpn-gateway-pod-gateway
+#    persistence:
+#      tunnel:
+#        enabled: true
+#        type: hostPath
+#        hostPath: /dev/net/tun
+#        advancedMounts:
+#          main:
+#            gluetun:
+#              - path: /dev/net/tun
+
     webhook:
       gatewayDefault: true
       gatewayLabel: setGateway
