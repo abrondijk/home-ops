@@ -26,9 +26,9 @@ spec:
       automount:
         enabled: false
       hostRoot: /sys/fs/cgroup
-    bandwidthManager:
-      enabled: true
-      bbr: true
+#    bandwidthManager:
+#      enabled: true
+#      bbr: true
     # NOTE: devices might need to be set if you have more than one active NIC on your hosts
     devices: eth+
     dashboards:
