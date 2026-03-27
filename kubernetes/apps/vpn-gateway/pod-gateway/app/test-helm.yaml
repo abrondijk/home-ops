@@ -18,6 +18,7 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         pod:
+#          hostNetwork: true
           securityContext:
             fsGroup: 1000
             fsGroupChangePolicy: "OnRootMismatch"
@@ -46,6 +47,7 @@ spec:
               capabilities:
                 add:
                   - NET_ADMIN
+                  - NET_RAW
             resources:
               requests:
                 memory: 128Mi
@@ -57,17 +59,19 @@ spec:
             env:
               DOT: "off"
               FIREWALL_INPUT_PORTS: "8080,8388,8888,9999"
-              FIREWALL_OUTBOUND_SUBNETS: "10.42.0.0/16,10.43.0.0/16,10.20.0.0/24,10.20.10.0/24,10.20.20.0/24,172.16.0.0/12"
+              FIREWALL_OUTBOUND_SUBNETS: "10.42.5.0/24,10.43.0.0/16,10.20.20.0/24"
               HTTPPROXY: "on"
               IPV6_DISABLED: "true"
               PORT_FORWARD_ONLY: "on"
-              SERVER_COUNTRIES: "Netherlands"
+              SERVER_COUNTRIES: "Germany"
               SHADOWSOCKS: "on"
               VPN_PORT_FORWARDING: "on"
               VPN_PORT_FORWARDING_PROVIDER: protonvpn
               VPN_SERVICE_PROVIDER: protonvpn
               VPN_TYPE: wireguard
               LOG_LEVEL: "debug"
+              VPN_INTERFACE: wg0
+#              HEALTH_TARGET_ADDRESS: "1.1.1.1:80"
           port-forward:
             dependsOn: gluetun
             image:
