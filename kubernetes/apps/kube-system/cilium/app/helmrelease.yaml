@@ -30,7 +30,7 @@ spec:
 #      enabled: true
 #      bbr: true
     # NOTE: devices might need to be set if you have more than one active NIC on your hosts
-    devices: eth+
+    devices: "eth0Sel0"
     dashboards:
       enabled: true
     endpointRoutes:
