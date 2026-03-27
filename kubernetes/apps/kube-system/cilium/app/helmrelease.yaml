@@ -11,9 +11,12 @@ spec:
   values:
     autoDirectNodeRoutes: true
     bpf:
+      datapathMode: netkit
       masquerade: true
+      preallocateMaps: true
       # Ref: https://github.com/siderolabs/talos/issues/10002
       hostLegacyRouting: true
+    bpfClockProbe: true
     bgpControlPlane:
       enabled: true
     cni:
@@ -23,8 +26,11 @@ spec:
       automount:
         enabled: false
       hostRoot: /sys/fs/cgroup
+    bandwidthManager:
+      enabled: true
+      bbr: true
     # NOTE: devices might need to be set if you have more than one active NIC on your hosts
-    # devices: eno+ eth+
+    devices: eth+
     dashboards:
       enabled: true
     endpointRoutes:
