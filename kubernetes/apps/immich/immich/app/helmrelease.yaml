@@ -35,7 +35,7 @@ spec:
           app:
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: &immich-version v2.5.6
+              tag: &immich-version v2.6.3
             envFrom: &envFrom
               - secretRef:
                   name: postgres-credentials
@@ -162,7 +162,7 @@ spec:
           app:
             image:
               repository: ghcr.io/immich-app/immich-machine-learning
-              tag: v2.5.6-openvino
+              tag: v2.6.3-openvino
             envFrom: *envFrom
             env:
               TRANSFORMERS_CACHE: /cache
