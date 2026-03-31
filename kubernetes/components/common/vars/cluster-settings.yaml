@@ -23,6 +23,8 @@ data:
   LAN_ZIGBEE_ADAPTER_PORT: "6638"
   LAN_TRUENAS_IP: 10.20.20.10
   TRUENAS_MEBIALIBRARY_PATH: "/mnt/main/medialibrary"
+  TRUENAS_IMMICH_PATH: "/mnt/fast/immich"
+  TRUENAS_PHOTO_COLLECTION_PATH: "/mnt/fast/photos"
   # Redis DB id's
   REDIS_IMMICH_REDIS_DB: "1"
   REDIS_OUTLINE_REDIS_DB: "3"

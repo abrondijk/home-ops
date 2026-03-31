@@ -1,0 +1,306 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app immich
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
+    controllers:
+      server:
+        replicas: 1
+        strategy: RollingUpdate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/immich-app/immich-server
+              tag: &immich-version v2.5.6
+            envFrom: &envFrom
+              - secretRef:
+                  name: postgres-credentials
+            env: &env
+              DB_HOSTNAME: "${POSTGRES_HOST}"
+              DB_PORT: "${POSTGRES_PORT}"
+              DB_DATABASE_NAME: immich
+              DB_USERNAME: immich
+              IMMICH_SERVER_URL: http://immich-server:2283
+              IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning:3003
+              IMMICH_WEB_URL: http://immich-server:2283
+              IMMICH_PORT: &server-port 2283
+              IMMICH_WORKERS_INCLUDE: 'api'
+              REVERSE_GEOCODING_DUMP_DIRECTORY: /geodata-cache
+              REDIS_URL: &redis "ioredis://ewogICJzZW50aW5lbHMiOiBbCiAgICB7CiAgICAgICJob3N0IjogInJlZGlzLW5vZGUtMC5yZWRpcy1oZWFkbGVzcy5kYXRhYmFzZS1zeXN0ZW0uc3ZjLmNsdXN0ZXIubG9jYWwiLAogICAgICAicG9ydCI6IDI2Mzc5CiAgICB9LAogICAgewogICAgICAiaG9zdCI6ICJyZWRpcy1ub2RlLTEucmVkaXMtaGVhZGxlc3MuZGF0YWJhc2Utc3lzdGVtLnN2Yy5jbHVzdGVyLmxvY2FsIiwKICAgICAgInBvcnQiOiAyNjM3OQogICAgfSwKICAgIHsKICAgICAgImhvc3QiOiAicmVkaXMtbm9kZS0yLnJlZGlzLWhlYWRsZXNzLmRhdGFiYXNlLXN5c3RlbS5zdmMuY2x1c3Rlci5sb2NhbCIsCiAgICAgICJwb3J0IjogMjYzNzkKICAgIH0KICBdLAogICJuYW1lIjogInJlZGlzLW1hc3RlciIKfQ=="
+              REDIS_DBINDEX: "2"
+            probes:
+              liveness: &server-probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/server/ping
+                    port: *server-port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *server-probes
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/server/ping
+                    port: *server-port
+                  failureThreshold: 30
+                  periodSeconds: 5
+                  successThreshold: 1
+                  timeoutSeconds: 1
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 100m
+                memory: 1Gi
+
+      microservices:
+        replicas: 1
+        strategy: RollingUpdate
+        pod:
+          affinity:
+            nodeAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 10
+                  preference:
+                    matchExpressions: &dedicated-gpu-affinity
+                      - key: gpu.intel.com/family
+                        operator: In
+                        values:
+                          - A_Series
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+            seccompProfile: { type: RuntimeDefault }
+            supplementalGroups: [44, 109, 993]
+        containers:
+          app:
+            image:
+              repository: ghcr.io/immich-app/immich-server
+              tag: *immich-version
+            envFrom: *envFrom
+            env:
+              DB_HOSTNAME: "${POSTGRES_HOST}"
+              DB_PORT: "${POSTGRES_PORT}"
+              DB_DATABASE_NAME: immich
+              DB_USERNAME: immich
+              IMMICH_SERVER_URL: http://immich-server:2283
+              IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning:3003
+              IMMICH_WEB_URL: http://immich-server:2283
+              IMMICH_PORT: *server-port
+              REVERSE_GEOCODING_DUMP_DIRECTORY: /geodata-cache
+              IMMICH_WORKERS_EXCLUDE: 'api'
+              REDIS_URL: *redis
+              REDIS_DBINDEX: "2"
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                gpu.intel.com/i915: 1
+                cpu: 100m
+                memory: 1Gi
+              limits:
+                cpu: 2000m
+                gpu.intel.com/i915: 1
+                memory: 10Gi
+
+      machine-learning:
+        enabled: false
+        replicas: 1
+        strategy: RollingUpdate
+        pod:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions: *dedicated-gpu-affinity
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+            seccompProfile: { type: RuntimeDefault }
+            supplementalGroups: [44, 109, 993]
+        containers:
+          app:
+            image:
+              repository: ghcr.io/immich-app/immich-machine-learning
+              tag: v2.5.6-openvino
+            envFrom: *envFrom
+            env:
+              TRANSFORMERS_CACHE: /cache
+              IMMICH_PORT: &maching-learning-port 3003
+              MACHINE_LEARNING_PRELOAD__CLIP: "ViT-H-14-378-quickgelu__dfn5b"
+              MACHINE_LEARNING_REQUEST_THREADS: "2"
+              REDIS_URL: *redis
+              REDIS_DBINDEX: "2"
+            probes:
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 100m
+                memory: 6Gi
+                gpu.intel.com/i915: 1
+              limits:
+                cpu: 2000m
+                memory: 10Gi
+                gpu.intel.com/i915: 1
+
+    service:
+      server:
+        controller: server
+        ports:
+          http:
+            port: *server-port
+#      machine-learning:
+#        controller: machine-learning
+#        ports:
+#          http:
+#            port: *maching-learning-port
+    route:
+      app:
+        parentRefs:
+          - name: internal-gateway
+            namespace: network
+            sectionName: https
+        hostnames:
+          - "immich.${PRIMARY_SECRET_DOMAIN}"
+          - "photos.${PRIMARY_SECRET_DOMAIN}"
+          - "immich.${SECONDARY_SECRET_DOMAIN}"
+          - "photos.${SECONDARY_SECRET_DOMAIN}"
+        rules:
+          - backendRefs:
+              - identifier: server
+                port: *server-port
+
+    persistence:
+      library:
+        type: nfs
+        server: "${LAN_TRUENAS_IP}"
+        path: "${TRUENAS_IMMICH_PATH}/library"
+        advancedMounts:
+          server: &library
+            app:
+              - path: /usr/src/app/upload/library
+          microservices: *library
+      thumbnail:
+        existingClaim: immich-thumbs
+        advancedMounts:
+          server: &thumbnail
+            app:
+              - path: /usr/src/app/upload/thumbs
+          microservices: *thumbnail
+      encoded-video:
+        type: nfs
+        server: "${LAN_TRUENAS_IP}"
+        path: "${TRUENAS_IMMICH_PATH}/encoded-video"
+        advancedMounts:
+          server: &encoded-video
+            app:
+              - path: /usr/src/app/upload/encoded-video
+          microservices: *encoded-video
+      profile:
+        existingClaim: immich-profile
+        advancedMounts:
+          server: &profile
+            app:
+              - path: /usr/src/app/upload/profile
+          microservices: *profile
+      upload:
+        existingClaim: immich-upload
+        advancedMounts:
+          server: &upload
+            app:
+              - path: /usr/src/app/upload/upload
+          microservices: *upload
+      backups:
+        existingClaim: immich-backups
+        advancedMounts:
+          server: &backups
+            app:
+              - path: /usr/src/app/upload/backups
+          microservices: *backups
+      external-library:
+        type: nfs
+        server: "${LAN_TRUENAS_IP}"
+        path: "${TRUENAS_PHOTO_COLLECTION_PATH}"
+        advancedMounts:
+          server: &external-library
+            app:
+              - path: /nas_photos
+                readOnly: true
+          microservices: *external-library
+      microservices:
+        existingClaim: immich-microservices
+        advancedMounts:
+          microservices:
+            app:
+              - path: /geodata-cache
+#      machine-learning:
+#        existingClaim: immich-machine-learning
+#        advancedMounts:
+#          machine-learning:
+#            app:
+#              - path: /cache
+#      machine-learning-usb:
+#        type: hostPath
+#        hostPath: /dev/bus/usb
+#        advancedMounts:
+#          machine-learning:
+#            app:
+#              - path: /dev/bus/usb
+#      tmp:
+#        type: emptyDir
+#        advancedMounts:
+#          machine-learning:
+#            app:
+#              - path: /tmp

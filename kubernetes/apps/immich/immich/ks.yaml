@@ -1,0 +1,23 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps-immich
+  namespace: &namespace immich
+spec:
+  dependsOn:
+    - name: cluster-apps-longhorn
+      namespace: storage-system
+    - name: cluster-apps-redis
+      namespace: database-system
+  path: ./kubernetes/apps/immich/immich/app
+  targetNamespace: *namespace
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
