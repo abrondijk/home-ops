@@ -41,14 +41,9 @@ spec:
               env:
                 - name: GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS
                   value: "natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel"
-                - name: GF_SECURITY_ADMIN_PASSWORD
-                  valueFrom:
-                    secretKeyRef:
-                      name: grafana-admin
-                      key: admin-password
               envFrom:
                 - secretRef:
-                    name: grafana-env
+                    name: grafana-authentication
               securityContext:
                 allowPrivilegeEscalation: false
                 readOnlyRootFilesystem: true
@@ -70,5 +65,5 @@ spec:
         - ReadWriteOnce
       resources:
         requests:
-          storage: 10Gi
+          storage: 100Mi
   disableDefaultSecurityContext: All

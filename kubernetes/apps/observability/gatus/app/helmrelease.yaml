@@ -89,8 +89,10 @@ spec:
         hostnames:
           - "{{ .Release.Name }}.${PRIMARY_SECRET_DOMAIN}"
           - "status.${PRIMARY_SECRET_DOMAIN}"
+          - "{{ .Release.Name }}.${SECONDARY_SECRET_DOMAIN}"
+          - "status.${SECONDARY_SECRET_DOMAIN}"
         parentRefs:
-          - name: external
+          - name: external-gateway
             namespace: network
             sectionName: https
     rbac:

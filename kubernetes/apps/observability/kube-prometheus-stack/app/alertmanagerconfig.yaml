@@ -41,5 +41,5 @@ spec:
     - name: discord
       discordConfigs:
         - apiURL:
-            name: alertmanager-secret
-            key: DISCORD_WEBHOOK_URL
+            name: discord-webhook
+            key: discord-webhook

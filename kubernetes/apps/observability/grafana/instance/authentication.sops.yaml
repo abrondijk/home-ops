@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grafana-authentication
+stringData:
+  GF_SECURITY_ADMIN_PASSWORD: ENC[AES256_GCM,data:EeMBE9WcvEs7L1DJqszrEwpGXCbISdYJz34Ko294DF8=,iv:2lttqiA56NTM8wCfmRH/plZkgaX2R3H9bRzei/KU04A=,tag:oD7l4tc4Tfb3WdMAzJryRg==,type:str]
+sops:
+  age:
+    - recipient: age18j2m4d43ks065lkuy40ge26xd86sss3289p0ntjklfmdns4pugxslq9jx0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWZUFvS0JMR0ZZOVhSNWpR
+        ekQ3K0tmQ1BqZDRZdHk4Z3c5Si94UDBsdUNFCjQ4Q0JqMncvcmJFbHF6MEs1YjNt
+        RjBNbVF1MXZKY2orYzlBMzQ3S0ZlUDQKLS0tIHJrck9hOHRFTEdRcjJ5VVFUMmRE
+        NzNJVDUvK1NEU1V3cjQ0V0NDdElnaVkKwqqhH66FAG1koZbkuX0CmfAuEfDQGfY9
+        6brd8juYJ3+c4PF1TkR22tYSvK+vUBe/AHEXv9XD7vRQ/FzDLxtIEA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-04-02T08:43:24Z"
+  mac: ENC[AES256_GCM,data:jva9kuo3r7ovSgdjdiD+GoTrR4IWuUrPyk6KbtJEud5tBKzECCBJEejczVyoHUgHFNNa7pXUaSetWvzXEgklIR7P3hbJEsWPghkAEfNbSIa4lydRgU4ClD0mG24p166xYSBWyMzznULYNwUojZqSkicXH4mnTMPyo7VPo9V/6oE=,iv:x9b5757wdyL20eZnyvhmGAh9PhmJdwW9KqfCbOCl2LA=,tag:GEmDa+pxg6wXABNPtbxouw==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.12.2

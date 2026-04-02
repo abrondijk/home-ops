@@ -6,18 +6,18 @@ metrics: true
 
 storage:
   type: postgres
-  path: "postgres://gatus:${GATUS_POSTGRES_PASS}@${POSTGRES_HOST}:${POSTGRES_PORT}/gatus"
+  path: "postgres://gatus:${GATUS_POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/gatus"
 
 ui:
-  title: Status | Mizuto
-  header: Mizuto Cluster Status
-  logo: https://avatars.githubusercontent.com/u/20231417
-  link: https://github.com/squaredpotato
+  title: Status | Bronlab
+  header: Bronlab Cluster Status
+  logo: https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/503830/ccab5ba73d4ad5291b3d11cd8e7fd7faf9b9553b.Gif
+  link: https://github.com/abrondijk
   buttons:
     - name: Github
-      link: https://github.com/squaredpotato
+      link: https://github.com/abrondijk
     - name: Homelab
-      link: https://github.com/squaredpotato/home-ops
+      link: https://github.com/abrondijk/home-ops
 
 connectivity:
   checker:

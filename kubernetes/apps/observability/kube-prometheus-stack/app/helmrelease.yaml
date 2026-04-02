@@ -32,15 +32,15 @@ spec:
         alertmanagerConfiguration:
           name: alertmanager
         externalUrl: https://alertmanager.${PRIMARY_SECRET_DOMAIN}
-        nodeSelector:
-          nodeType: "worker"
+#        nodeSelector:
+#          nodeType: "worker"
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: longhorn
+              storageClassName: longhorn-v2
               resources:
                 requests:
-                  storage: 1Gi
+                  storage: 100Mi
     kubeEtcd:
       service:
         selector:
@@ -88,12 +88,12 @@ spec:
             cpu: 100m
           limits:
             memory: 2000Mi
-        nodeSelector:
-          nodeType: "worker"
+#        nodeSelector:
+#          nodeType: "worker"
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: longhorn
+              storageClassName: longhorn-v2
               resources:
                 requests:
                   storage: 50Gi

@@ -13,7 +13,7 @@ spec:
   hostnames:
     - "grafana.${PRIMARY_SECRET_DOMAIN}"
   parentRefs:
-    - name: internal
+    - name: internal-gateway
       namespace: network
       sectionName: https
   rules:
