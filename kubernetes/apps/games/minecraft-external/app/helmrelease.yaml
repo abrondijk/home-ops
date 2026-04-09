@@ -31,7 +31,7 @@ spec:
     # https://github.com/itzg/minecraft-server-charts/blob/master/charts/minecraft/values.yaml
     image:
       repository: itzg/minecraft-server
-      tag: 2026.4.0
+      tag: 2026.4.1
       pullPolicy: IfNotPresent
     replicaCount: 1
     resources:
