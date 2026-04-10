@@ -7,6 +7,10 @@ helmDefaults:
   args:
     - --include-crds
     - --no-hooks
+    -
+repositories:
+  - name: longhorn
+    url: https://charts.longhorn.io
 
 releases:
   - name: cloudflare-dns
@@ -28,3 +32,8 @@ releases:
     namespace: observability
     chart: oci://ghcr.io/grafana/helm-charts/grafana-operator
     version: 5.22.2
+
+  - name: longhorn
+    namespace: storage-system
+    chart: longhorn/longhorn
+    version: 1.11.1
