@@ -30,4 +30,14 @@ spec:
       enabled: true
       parameters:
         barmanObjectName: production
-        serverName: &currentCluster production-v0
+        serverName: &currentCluster production-v1
+  bootstrap:
+    recovery:
+      source: productionBackup
+  externalClusters:
+    - name: productionBackup
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: production
+          serverName: production-v0
