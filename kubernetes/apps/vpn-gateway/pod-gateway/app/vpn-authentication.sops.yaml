@@ -4,19 +4,15 @@ metadata:
   name: vpn-authentication
 type: Opaque
 stringData:
-  #ENC[AES256_GCM,data:ywZGPr4Q7QPqpPpLiuoQUJTnyKkT,iv:eK4oY3IjH2mi9EgQZ3XtKEs8mrPxrf6qLk8tZMmCpEs=,tag:F8um3v+wVNWy49NBz42gfA==,type:comment]
-  #ENC[AES256_GCM,data:GArkNuwKE5wOTe6HQo9Shm85FOkN2sXHkDikfRIYkpSrfQPaWfI=,iv:Fu5z3s7GFk8g+qDDErpmU3HAUeqXp5Inlr1e6cmxf+c=,tag:6Qe/Drkd7f1wAeDJblYoQg==,type:comment]
-  #ENC[AES256_GCM,data:OYycwJvGeqn3FDsoiwyxmr6aI/aC1bQFvIpXtyEUQUiN5qkMuiGsubymp4bM0ZS7PP9Kb8CM,iv:PgwnqBVBL+83Z47C8xjNlC/ZrI+yIEPeb5C2VxIaX9s=,tag:VWxzgh8zf90egdmU2oZKOQ==,type:comment]
-  #ENC[AES256_GCM,data:Pg0iVfb1qkKcljxoN2Mxd3R1um5wQhl3M95YNGVnwiyRPpc=,iv:l58qev1auUPL70aBGGzyk94H1pJkIbdMmGfp9YZX57Q=,tag:OcdjWPKMr4q2ybxFYeA29Q==,type:comment]
-  #ENC[AES256_GCM,data:lerKz2AJLdCSOlqKWm3hrDCyPT40d7mfbxpEKDGdQpnsculKGnRZ65IJCxFGLS9e51EDGAtwLqr4S6JwzFHBCLjpAsVFE/ngCDIQ/ARRYytc,iv:imCaWbRnwahBK+++7qHtjVgjvI5kASvgOrjHK6WY2kM=,tag:ZC/pIxo0SwnXMaznGZOPxg==,type:comment]
-  #ENC[AES256_GCM,data:EJQfzvS9/CZ9U3VjVSgZ0lA15bpgcOLwx0UUHW/cgMqU,iv:f9R9EdcmhjoMVIsbWwKBKG6UvxKEYnSsQ27NzKeeoX4=,tag:iHEe3Be24XpXw7MD0vYV6Q==,type:comment]
-  #ENC[AES256_GCM,data:sS3TxYW+4oCOkNLJJuRjRafiHDd4,iv:R3lFUtdl8zDmhu8p6DxNR8ja0yRHrzXU3UndlLbXD24=,tag:sn0ZS3F3+Fo683mXNnc7Vw==,type:comment]
-  #ENC[AES256_GCM,data:b3iUBlG2CQXg+P1D9SWhu+GaJwUKPnYSs9H+/QiKfA==,iv:PnT5sK6bC8vaE/rczDwD7QANrZ84BL85fOZTdv53OZg=,tag:POXdVNJ3Q9Z344AodoZQPA==,type:comment]
-  #ENC[AES256_GCM,data:Spii1vVMUbSP20bCEiK5Y4g/a/0ig3C8XkXIskk=,iv:U9Ub37ixrTLbW4zozzYLrKVODopZ2obeffICRjkiPpY=,tag:yqOuhF2BZxETUxtBfRpGpQ==,type:comment]
-  #ENC[AES256_GCM,data:3HbToKbMEG9VOSeXBSwpXOyG8NCkkJPD9Q==,iv:QqYNmTGVB1QA74r7qX8+XeLFY3CaFY1u2BnOW0rURRU=,tag:dwutQKdPvXQOe3F4kWeITg==,type:comment]
-  #ENC[AES256_GCM,data:ojLD9pFNBruXVN16ioXhq2J8Sgw=,iv:944zD65/Dp3+OFuGpRErKMP1BqPr043MA/f4opHvCSU=,tag:acyC8i2v18N6qauC2cZauw==,type:comment]
-  #ENC[AES256_GCM,data:16zjbJzdkj2nWOGkPh6C2Q6UWUC9Tsl8LNSZyXkvbM2w,iv:5b4FZ8N76KyXwh5ApXwemHpbz108pKYOxJxChXUcaqM=,tag:lvLXMgVod3xcP7LKh8cJyQ==,type:comment]
+  FIREWALL_INPUT_PORTS: ENC[AES256_GCM,data:/M426jMuxFXjzZvaoIz+YqEivA==,iv:i3xjryZbXSC7E0yX+S44RlFT+T9Y/KKIC/0chcd85EQ=,tag:UlePH0eB/i+INxHT0SHXwA==,type:str]
+  SERVER_COUNTRIES: ENC[AES256_GCM,data:QhyJItxC3HZNmII=,iv:qAmlQkgKNBs6X3dejkvaFiDYhlprzXuzs46HpLNncFM=,tag:j5/66Xe/TV5T/js7/uqmmg==,type:str]
+  SHADOWSOCKS: ENC[AES256_GCM,data:xZc=,iv:sK9bsMEAebBEJihXjmnmgfhbZ5BefjwmeJ4d8Ci+xMg=,tag:1uoCWNiJHKwgZaMSKJxBUQ==,type:str]
+  VPN_PORT_FORWARDING: ENC[AES256_GCM,data:AKY=,iv:rN2OO9hypNg9RFr2aR1LFgnVa3ADPB2qiAZ7+pbWmHI=,tag:Gr+gFQFlf9YF05ThfYBFaw==,type:str]
+  VPN_PORT_FORWARDING_PROVIDER: ENC[AES256_GCM,data:yzdM5IARRzwb,iv:7vCjjsamjZstqNpKuBqFUqy6Rtgk4B6vBd7qfgf1h10=,tag:UB+enzDZoWMIqgwbFofjWQ==,type:str]
+  VPN_SERVICE_PROVIDER: ENC[AES256_GCM,data:LTRY/hoMAo9W,iv:FCWjW8J+a3O7mpOMxvFma8uaweE2dZI/qi2UwPwc5Pg=,tag:ope5N8Cpr3CFYfLEaeSLYQ==,type:str]
   WIREGUARD_PRIVATE_KEY: ENC[AES256_GCM,data:CVhlMhvUgEzO1dg+HUZVnu8WwG4xhNZDKufSgMRF4vPdEXiWpoOcU1T1S58=,iv:XrVyogCtBKOQEv4gGp4wnWIcJXEDtOZl5fv6oOodT5U=,tag:RfIxbylZy8HNVJ+2JMOaXA==,type:str]
+  QBITTORRENT_SERVER: ENC[AES256_GCM,data:QxMVVAjpk1t0,iv:vXpiEkD/8fYcHcClsRjXgcBCwRLrLVOn+diB7p5bUuw=,tag:ujEnq5tgSJDiabljyb4y7Q==,type:str]
+  QBITTORRENT_PORT: ENC[AES256_GCM,data:s4UbgQ==,iv:3sViRsZ8hghCVpnQdBjChoupmbwPHWjW73U8CTKSJLk=,tag:faQkHOQfs4oJJZ9dWba2bw==,type:str]
 sops:
   age:
     - recipient: age18j2m4d43ks065lkuy40ge26xd86sss3289p0ntjklfmdns4pugxslq9jx0
@@ -28,8 +24,8 @@ sops:
         VGplNmRqdWlrUWdleEZoK0Z5N28za28KTr0RPTfKZF+TK+b65ipr2yxsrTahJjVt
         dSO+xVV34XCd9RiWMhXgENpSXO5p7lw7+3CwkrxTMrkXY1NZQdwx/w==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-03-27T08:07:09Z"
-  mac: ENC[AES256_GCM,data:sek03XdzYG/SHaKVp0ToktmU4j60uWl6lQknWFu7C+7xhX3+3IA1Uog+rhx7mbBPzkwH8J8PQVeQcNxVReMME/LZU498+6C3jCFPSItgKH6Q0T8q3moB8avrhrz6ZovhokbMOeXsocBPj6jjMfuo4/i1grddmmxyJ7QObDEGkDc=,iv:d9j7etrzyTeIKqHzEPV8lbLd/40b4W9hzdirHv9WWok=,tag:bA69Sr0Z/feO0OaZ5+5mFw==,type:str]
+  lastmodified: "2026-04-11T19:25:14Z"
+  mac: ENC[AES256_GCM,data:B5U7GptBvAa0wG5vV/VaVwDEa0Q8BGpYoeKgTPRucJ7GDND6xDJQfYm6FDvZDEwjA1ldK+/bzXsZdaQlm3b0+/GRw+D5GH2lJsHgURjXTFivhizKXepJl1/z0Y/22lMh2yq23lwrajxA4MxfSc4lzj45tHctfG24WbrONfTRBwA=,iv:5Pq73VqLINXPQfA/mWtkapD7BRcvZgxuxGFsEQn8c5g=,tag:UwqfKxNN2sxAC+YTz+AMpQ==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.12.2
