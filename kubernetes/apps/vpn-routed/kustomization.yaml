@@ -6,4 +6,6 @@ components:
   - ../../components/common
 resources:
   - ./namespace.yaml
-#  - ./flaresolverr/ks.yaml
+  - ./flaresolverr/ks.yaml
+  - ./prowlarr/ks.yaml
+  - ./qbittorrent/ks.yaml
