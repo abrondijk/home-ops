@@ -59,7 +59,7 @@ spec:
                   name: vpn-authentication
             env:
               DOT: "off"
-              FIREWALL_OUTBOUND_SUBNETS: "10.42.5.0/24,10.43.0.0/16,10.20.20.0/24"
+              FIREWALL_OUTBOUND_SUBNETS: "10.42.0.0/16,10.43.0.0/16,10.20.20.0/24"
               HTTPPROXY: "on"
               IPV6_DISABLED: "true"
               PORT_FORWARD_ONLY: "on"
@@ -117,5 +117,5 @@ spec:
       VPN_BLOCK_OTHER_TRAFFIC: true
       VPN_TRAFFIC_PORT: 51820
       DNS_LOCAL_CIDRS: "local ${PRIMARY_SECRET_DOMAIN} ${SECONDARY_SECRET_DOMAIN} ${TERTIARY_SECRET_DOMAIN}"
-      NOT_ROUTED_TO_GATEWAY_CIDRS: &local-cidr "10.42.5.0/24 10.43.0.0/16 10.20.20.0/24 10.20.50.0/24"
-      VPN_LOCAL_CIDRS: *local-cidr
+      NOT_ROUTED_TO_GATEWAY_CIDRS: "10.42.0.0/16 10.43.0.0/16 172.16.0.0/12"
+      VPN_LOCAL_CIDRS: "10.42.0.0/16 10.43.0.0/16 10.20.20.0/24 10.20.50.0/24 172.16.0.0/12"
