@@ -86,7 +86,7 @@ spec:
           main:
             image:
               repository: ghcr.io/angelnu/gateway-admision-controller
-              tag: dev@sha256:e9797e7d9fa2be9e246c6d2f0fbef688ea1c14e29e2e84b2c66c6806cf51d1aa
+              tag: dev@sha256:40f15576455571802e99833dadc8ae3015bd8622dabba7181afb41d3683a07bd
         pod:
           annotations:
             configmap.reloader.stakater.com/reload: vpn-gateway-pod-gateway
