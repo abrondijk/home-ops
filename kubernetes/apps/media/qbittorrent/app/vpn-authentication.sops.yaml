@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: vpn-authentication
+type: Opaque
+stringData:
+  FIREWALL_INPUT_PORTS: ENC[AES256_GCM,data:X1vs8H0sTBHVhRkuPs8O+GO0bAArAA==,iv:gfB6Kovxy7yBE9x/GIJvadUi8stb4SXYVQQqS2RRGb8=,tag:NhqPDeuzVazXqAgEPN3WTQ==,type:str]
+  SERVER_COUNTRIES: ENC[AES256_GCM,data:QhyJItxC3HZNmII=,iv:qAmlQkgKNBs6X3dejkvaFiDYhlprzXuzs46HpLNncFM=,tag:j5/66Xe/TV5T/js7/uqmmg==,type:str]
+  SHADOWSOCKS: ENC[AES256_GCM,data:xZc=,iv:sK9bsMEAebBEJihXjmnmgfhbZ5BefjwmeJ4d8Ci+xMg=,tag:1uoCWNiJHKwgZaMSKJxBUQ==,type:str]
+  VPN_PORT_FORWARDING: ENC[AES256_GCM,data:AKY=,iv:rN2OO9hypNg9RFr2aR1LFgnVa3ADPB2qiAZ7+pbWmHI=,tag:Gr+gFQFlf9YF05ThfYBFaw==,type:str]
+  VPN_PORT_FORWARDING_PROVIDER: ENC[AES256_GCM,data:yzdM5IARRzwb,iv:7vCjjsamjZstqNpKuBqFUqy6Rtgk4B6vBd7qfgf1h10=,tag:UB+enzDZoWMIqgwbFofjWQ==,type:str]
+  VPN_SERVICE_PROVIDER: ENC[AES256_GCM,data:LTRY/hoMAo9W,iv:FCWjW8J+a3O7mpOMxvFma8uaweE2dZI/qi2UwPwc5Pg=,tag:ope5N8Cpr3CFYfLEaeSLYQ==,type:str]
+  WIREGUARD_PRIVATE_KEY: ENC[AES256_GCM,data:CVhlMhvUgEzO1dg+HUZVnu8WwG4xhNZDKufSgMRF4vPdEXiWpoOcU1T1S58=,iv:XrVyogCtBKOQEv4gGp4wnWIcJXEDtOZl5fv6oOodT5U=,tag:RfIxbylZy8HNVJ+2JMOaXA==,type:str]
+sops:
+  age:
+    - recipient: age18j2m4d43ks065lkuy40ge26xd86sss3289p0ntjklfmdns4pugxslq9jx0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBQaVk2aEp3SXQ5cXdqb3gy
+        VkU1M1Z4ZW9tTUpVejB3Q1pGRVd0Wnc4NVJBCnV1enp6WkNoc0RKWnhMdWFkV0E0
+        Uk9BczlHZTA2ZGdNTzh3aHhnQ1haekEKLS0tIHJ0ZVVFWlRMNGgyY3U5OFBSWUpV
+        VGplNmRqdWlrUWdleEZoK0Z5N28za28KTr0RPTfKZF+TK+b65ipr2yxsrTahJjVt
+        dSO+xVV34XCd9RiWMhXgENpSXO5p7lw7+3CwkrxTMrkXY1NZQdwx/w==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-04-11T21:45:07Z"
+  mac: ENC[AES256_GCM,data:1Ss3COZL9sbMwhubPqlBqCEfJV4NVUgYrjIQWCWMgbxSX9bMXu31VM82od25iFwRb21prmVvp8pSvYv4X8IZ/J4ROPHlx6gbZOYNJRlP2WPP28tktUjsCX4kMDOL0p1C/0vYpGU2cpen1EhqiqWTx8XhAqKTN8wqDh3NDfhtHts=,iv:ySttJSkoWvR5a7dq5kJ3cTg+MgE7ohCOoT+w/1wXgY0=,tag:VIHmb5BM5HxZaxvZq5dBCw==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.12.2
