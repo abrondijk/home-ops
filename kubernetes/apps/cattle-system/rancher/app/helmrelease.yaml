@@ -1,0 +1,32 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: rancher
+  namespace: cattle-system
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: rancher
+      version: '2.14.0'
+      sourceRef:
+        kind: HelmRepository
+        name: rancher-latest
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    hostname: "rancher.${PRIMARY_SECRET_DOMAIN}"
+    bootstrapPassword: "admin"
+    ingress:
+      enabled: false
+    tls: external

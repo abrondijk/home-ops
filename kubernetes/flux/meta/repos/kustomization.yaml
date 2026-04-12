@@ -27,6 +27,7 @@ resources:
   - ./openebs.yaml
   - ./prometheus-community.yaml
   - ./rancher-stable.yaml
+  - ./rancher-latest.yaml
   - ./stakater.yaml
   - ./traefik.yaml
 
