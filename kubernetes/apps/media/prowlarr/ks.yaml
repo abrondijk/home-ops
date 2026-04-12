@@ -1,0 +1,25 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps-prowlarr
+  namespace: &namespace media
+spec:
+  dependsOn:
+    - name: cluster-apps-longhorn
+      namespace: storage-system
+    - name: cluster-apps-cloudnative-pg-cluster
+      namespace: database-system
+    - name: apps-qbittorrent
+    - name: apps-flaresolverr
+  path: ./kubernetes/apps/media/prowlarr/app
+  targetNamespace: *namespace
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  wait: true
+  interval: 15m
+  retryInterval: 1m
+  timeout: 5m
