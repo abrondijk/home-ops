@@ -24,7 +24,7 @@ spec:
         strategy: RollingUpdate
         replicas: 2
         containers:
-          app:
+          flaresolverr:
             image:
               repository: ghcr.io/flaresolverr/flaresolverr
               tag: v3.4.6
@@ -37,10 +37,30 @@ spec:
                 memory: 1024Mi
             env:
               TZ: "${TIMEZONE}"
+              PORT: &flaresolverr-port 8191
             securityContext:
               allowPrivilegeEscalation: false
-#              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              #              readOnlyRootFilesystem: true
+              capabilities: { drop: [ "ALL" ] }
+          flaresolverr-proxied:
+            image:
+              repository: ghcr.io/flaresolverr/flaresolverr
+              tag: v3.4.6
+              pullPolicy: IfNotPresent
+            resources:
+              requests:
+                memory: 100Mi
+                cpu: 100m
+              limits:
+                memory: 1024Mi
+            env:
+              TZ: "${TIMEZONE}"
+              PORT: &flaresolverr-proxied-port 8192
+              PROXY_URL: "http://qbittorrent-proxy:8888"
+            securityContext:
+              allowPrivilegeEscalation: false
+              #              readOnlyRootFilesystem: true
+              capabilities: { drop: [ "ALL" ] }
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -55,4 +75,9 @@ spec:
         controller: flaresolverr
         ports:
           http:
-            port: 8191
+            port: *flaresolverr-port
+      proxied:
+        controller: flaresolverr
+        ports:
+          http:
+            port: *flaresolverr-proxied-port
