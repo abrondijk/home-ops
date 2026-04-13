@@ -53,7 +53,7 @@ spec:
       enabled: true
       image:
         repository: bitnami/redis-exporter
-        tag: "latest@sha256:03d8272df8a974481c31b9279773283908c83c8e7526a1d4a879af5222819df4"
+        tag: "latest@sha256:828b7303cbb90a7f534e985bca7b9c9d450b41bcf5dc4c409819511e92d2d037"
       pullPolicy: IfNotPresent
       resourcesPreset: "small"
       serviceMonitor:
