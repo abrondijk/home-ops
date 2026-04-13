@@ -145,6 +145,8 @@ spec:
         hostnames:
           - "{{ .Release.Name }}.${PRIMARY_SECRET_DOMAIN}"
           - "qbit.${PRIMARY_SECRET_DOMAIN}"
+          - "{{ .Release.Name }}.${SECONDARY_SECRET_DOMAIN}"
+          - "qbit.${SECONDARY_SECRET_DOMAIN}"
         parentRefs:
           - name: internal-gateway
             namespace: network

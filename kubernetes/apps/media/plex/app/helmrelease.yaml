@@ -96,6 +96,7 @@ spec:
             sectionName: https
         hostnames:
           - "plex.${PRIMARY_SECRET_DOMAIN}"
+          - "{{ .Release.Name }}.${SECONDARY_SECRET_DOMAIN}"
         rules:
           - # Ref: https://forums.plex.tv/t/external-srt-subtitles-are-not-working-w-reverse-proxy/886540
             backendRefs:
