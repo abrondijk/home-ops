@@ -136,6 +136,16 @@
       matchDatasources: ["github-releases"],
       addLabels: ["renovate/github-release"],
     },
+    {
+      description: "Redis Sentinal Group",
+      groupName: "redis-sentinel",
+      matchDatasources: ["docker"],
+      matchPackageNames: ["bitnami/redis-sentinel", "bitnami/redis-exporter", "bitnami/redis"],
+      group: {
+        commitMessageTopic: "{{{groupName}}} group",
+      },
+      minimumGroupSize: 3,
+    },
   ],
   customManagers: [
     {
