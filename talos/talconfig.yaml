@@ -155,7 +155,7 @@ nodes:
     hostname: "eris"
     ipAddress: "10.20.20.54"
     installDiskSelector:
-      wwid: "naa.50026b738121a9cf"
+      wwid: "naa.5002538d40a9267f"
     networkInterfaces:
       - <<: *networkInterface
         deviceSelector:
