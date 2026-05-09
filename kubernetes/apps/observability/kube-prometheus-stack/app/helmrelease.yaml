@@ -32,8 +32,6 @@ spec:
         alertmanagerConfiguration:
           name: alertmanager
         externalUrl: https://alertmanager.${PRIMARY_SECRET_DOMAIN}
-#        nodeSelector:
-#          nodeType: "worker"
         storage:
           volumeClaimTemplate:
             spec:
@@ -47,6 +45,9 @@ spec:
           component: kube-apiserver # etcd runs on control plane nodes
     kubeProxy:
       enabled: false
+    crds:
+      upgradeJob:
+        enabled: true
     prometheus:
       route:
         main:
@@ -66,11 +67,6 @@ spec:
               sectionName: https
       prometheusSpec:
         externalUrl: https://prometheus.${PRIMARY_SECRET_DOMAIN}
-        version: v2.55.1 # override 'unsupported Prometheus version' error
-        image:
-          registry: docker.io
-          repository: prompp/prompp
-          tag: 0.7.10
         securityContext:
           runAsNonRoot: true
           runAsUser: 64535
@@ -88,8 +84,6 @@ spec:
             cpu: 100m
           limits:
             memory: 2000Mi
-#        nodeSelector:
-#          nodeType: "worker"
         storageSpec:
           volumeClaimTemplate:
             spec:
