@@ -10,6 +10,7 @@ spec:
     name: kube-prometheus-stack
   interval: 1h
   values:
+    #    https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
       route:
@@ -48,6 +49,9 @@ spec:
     crds:
       upgradeJob:
         enabled: true
+    customRules:
+      KubeClientCertificateExpiration:
+        for: 1h
     prometheus:
       route:
         main:
