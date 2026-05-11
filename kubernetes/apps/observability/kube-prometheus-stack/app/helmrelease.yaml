@@ -51,7 +51,7 @@ spec:
         enabled: true
     customRules:
       KubeClientCertificateExpiration:
-        for: 1h
+        for: 4h
     prometheus:
       route:
         main:
