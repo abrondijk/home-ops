@@ -94,6 +94,10 @@ spec:
                 subPath: tmp
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            name: Plex
+            group: External
         parentRefs:
           - name: internal-gateway
             namespace: network

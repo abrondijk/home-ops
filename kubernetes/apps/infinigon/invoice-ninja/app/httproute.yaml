@@ -4,6 +4,12 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: invoice-ninja
+  annotations:
+    gatus.home-operations.com/endpoint: |-
+      name: "Invoice Ninja"
+      group: Internal
+      ui:
+        hide-url: true
 spec:
   hostnames:
     - "erp.${TERTIARY_SECRET_DOMAIN}"

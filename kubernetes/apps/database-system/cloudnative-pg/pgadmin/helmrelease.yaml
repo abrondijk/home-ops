@@ -81,11 +81,12 @@ spec:
     route:
       app:
         annotations:
-          gatus.home-operations.com/enabled: "true"
           gatus.home-operations.com/endpoint: |-
-            name: "PGAdmin"
+            name: PgAdmin
             group: Internal
-            guarded: true
+            ui:
+              hide-url: true
+              hide-hostname: true
         hostnames:
           - "pgadmin.${PRIMARY_SECRET_DOMAIN}"
         parentRefs:

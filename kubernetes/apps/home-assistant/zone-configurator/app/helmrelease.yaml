@@ -67,6 +67,13 @@ spec:
 
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            name: "Zone Configurator"
+            group: Internal
+            ui:
+              hide-url: true
+              hide-hostname: true
         hostnames: ["zone-configurator.${PRIMARY_SECRET_DOMAIN}"]
         parentRefs:
           - name: internal-gateway

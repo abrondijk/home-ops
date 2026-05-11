@@ -121,6 +121,10 @@ spec:
                 subPath: nonexistent
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            name: "Home Assistant"
+            group: External
         parentRefs:
           - name: external-gateway
             namespace: network
@@ -143,6 +147,13 @@ spec:
               - identifier: gateway
                 port: 8123
       code:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            name: "Home Configurator"
+            group: Internal
+            ui:
+              hide-url: true
+              hide-hostname: true
         enabled: true
         parentRefs:
           - name: internal-gateway

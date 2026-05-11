@@ -208,6 +208,10 @@ spec:
 #            port: *maching-learning-port
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            name: Immich
+            group: External
         parentRefs:
           - name: internal-gateway
             namespace: network

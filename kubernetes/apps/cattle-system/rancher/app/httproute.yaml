@@ -5,9 +5,12 @@ kind: HTTPRoute
 metadata:
   name: rancher
   annotations:
-    gatus.home-operations.com/name: "Rancher"
-    gatus.home-operations.com/guarded: true
-    gatus.home-operations.com/group: internal
+    gatus.home-operations.com/endpoint: |-
+      name: "Rancher"
+      group: Internal
+      ui:
+        hide-url: true
+        hide-hostname: true
 spec:
   hostnames:
     - "rancher.${PRIMARY_SECRET_DOMAIN}"

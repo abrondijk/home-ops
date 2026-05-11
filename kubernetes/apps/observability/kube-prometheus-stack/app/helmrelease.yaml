@@ -18,10 +18,10 @@ spec:
           annotations:
             gatus.home-operations.com/endpoint: |-
               name: "Alertmanager"
-              group: internal
-              guarded: true
+              group: Internal
               ui:
                 hide-url: true
+                hide-hostname: true
           enabled: true
           hostnames:
             - alertmanager.${PRIMARY_SECRET_DOMAIN}
@@ -58,10 +58,10 @@ spec:
           annotations:
             gatus.home-operations.com/endpoint: |-
               name: "Prometheus"
-              group: internal
-              guarded: true
+              group: Internal
               ui:
                 hide-url: true
+                hide-hostname: true
           enabled: true
           hostnames:
             - prometheus.${PRIMARY_SECRET_DOMAIN}

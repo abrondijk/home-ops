@@ -92,6 +92,13 @@ spec:
 
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            name: Zigbee2MQTT
+            group: Internal
+            ui:
+              hide-url: true
+              hide-hostname: true
         hostnames: ["zigbee.${PRIMARY_SECRET_DOMAIN}"]
         parentRefs:
           - name: internal-gateway

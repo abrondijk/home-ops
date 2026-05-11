@@ -53,7 +53,9 @@ spec:
         gatus.home-operations.com/endpoint: |-
           name: Longhorn Dashboard
           group: Internal
-          guarded: true
+          ui:
+            hide-url: true
+            hide-hostname: true
 
     defaultBackupStore:
       backupTarget: *s3Target

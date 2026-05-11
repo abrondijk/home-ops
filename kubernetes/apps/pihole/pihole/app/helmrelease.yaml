@@ -81,6 +81,12 @@ spec:
                 subPath: dnsmasq
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            name: Pi-hole
+            group: Internal
+            ui:
+              hide-url: true
         parentRefs:
           - name: internal-gateway
             namespace: network

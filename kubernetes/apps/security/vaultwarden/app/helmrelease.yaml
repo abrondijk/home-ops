@@ -75,7 +75,7 @@ spec:
         annotations:
           gatus.home-operations.com/endpoint: |-
             name: Vaultwarden
-            group: external
+            group: External
         hostnames:
           - "pass.${PRIMARY_SECRET_DOMAIN}"
           - "pass.${SECONDARY_SECRET_DOMAIN}"

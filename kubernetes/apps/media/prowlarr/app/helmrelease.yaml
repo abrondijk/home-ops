@@ -68,6 +68,13 @@ spec:
 
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            name: Prowlarr
+            group: Internal
+            ui:
+              hide-url: true
+              hide-hostname: true
         hostnames:
           - "{{ .Release.Name }}.${PRIMARY_SECRET_DOMAIN}"
           - "{{ .Release.Name }}.${SECONDARY_SECRET_DOMAIN}"

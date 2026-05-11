@@ -60,6 +60,10 @@ spec:
           - port: http
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            name: Echo
+            group: External
         hostnames:
           - "{{ .Release.Name }}.${PRIMARY_SECRET_DOMAIN}"
           - "{{ .Release.Name }}.${SECONDARY_SECRET_DOMAIN}"

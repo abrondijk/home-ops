@@ -81,6 +81,14 @@ metadata:
   name: internal-gateway
   annotations:
     external-dns.alpha.kubernetes.io/target: "internal.${PRIMARY_SECRET_DOMAIN}"
+    gatus.home-operations.com/endpoint: |-
+      group: Internal
+      conditions: ["[STATUS] == 200"]
+      client:
+        dns-resolver: tcp://${CLUSTER_K8S_GATEWAY_IP}:53
+      ui:
+        hide-hostname: true
+        hide-url: true
 spec:
   gatewayClassName: envoy
   infrastructure:
