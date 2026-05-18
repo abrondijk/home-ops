@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: esphome
+stringData:
+  USERNAME: ENC[AES256_GCM,data:QcQHDilJIQ==,iv:BLyXnfTy6RC518g/VmjSYYS/sfwoCQ+IP34VzpquU3g=,tag:eopLYtPCs0mssWixCWKOqw==,type:str]
+  PASSWORD: ENC[AES256_GCM,data:iJDklJirPad+eRfFI5RBDd4WZR4dw1WXdMYmKF6HM7Y=,iv:EGuoHKWn8HyyJDwWuOcWg4eoynoqQqWcBWlJtKoMtV8=,tag:5RZe1+16kW4QDnWwgoFpPQ==,type:str]
+sops:
+  age:
+    - enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWZUFvS0JMR0ZZOVhSNWpR
+        ekQ3K0tmQ1BqZDRZdHk4Z3c5Si94UDBsdUNFCjQ4Q0JqMncvcmJFbHF6MEs1YjNt
+        RjBNbVF1MXZKY2orYzlBMzQ3S0ZlUDQKLS0tIHJrck9hOHRFTEdRcjJ5VVFUMmRE
+        NzNJVDUvK1NEU1V3cjQ0V0NDdElnaVkKwqqhH66FAG1koZbkuX0CmfAuEfDQGfY9
+        6brd8juYJ3+c4PF1TkR22tYSvK+vUBe/AHEXv9XD7vRQ/FzDLxtIEA==
+        -----END AGE ENCRYPTED FILE-----
+      recipient: age18j2m4d43ks065lkuy40ge26xd86sss3289p0ntjklfmdns4pugxslq9jx0
+  encrypted_regex: ^(data|stringData)$
+  lastmodified: "2026-05-18T10:46:17Z"
+  mac: ENC[AES256_GCM,data:/jQ1hQnGiPX5YLaGRW8FfHQapYz/QicY2KWxtKg9Jm7Fsu+nxMxlK2UKr1PNaHtvG0Sb6E9XU2CqqxiKiPeb8sA2CEjMFsEU20r7g4Va/ufCLYOHedoH/F/fja0JrmUlDF2sn+39NYOHbqf2v2sHRG+Shfk1Kibf8X9zXAmpOws=,iv:2oB4uOgOx22LGJvDpgnVLL+GiLdz4wAMg9js4tA6l1E=,tag:+GM8qGH90ueiJjSGAAKn1Q==,type:str]
+  mac_only_encrypted: true
+  version: 3.13.1
