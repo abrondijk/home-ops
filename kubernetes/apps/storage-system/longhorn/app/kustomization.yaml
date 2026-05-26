@@ -8,3 +8,4 @@ resources:
   - ./longhorn-wasabi.sops.yaml
   - ./longhorn-deprecated-wasabi.sops.yaml
   - ./additionalBackupTargets.yaml
+  - grafana-dashboard.yaml
