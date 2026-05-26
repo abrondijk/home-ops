@@ -33,6 +33,11 @@
   },
   packageRules: [
     {
+      matchPackageNames: ['ghcr.io/cloudnative-pg/postgresql'],
+      matchUpdateTypes: ['major'],
+      dependencyDashboardApproval: true
+    },
+    {
       description: "Override Helmfile Dependency Name",
       matchDatasources: ["docker"],
       matchManagers: ["helmfile"],
@@ -181,5 +186,20 @@
       ],
       datasourceTemplate: "docker",
     },
+    {
+      // CloudNativePG Cluster imageName
+      customType: 'regex',
+      description: 'CNPG Cluster Database Image',
+      managerFilePatterns: [
+        '/cluster\.yaml/'
+      ],
+      matchStrings: [
+        'imageName: (?<depName>[^\\s:]+):(?<currentValue>[^\\s@]+)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?'
+      ],
+      datasourceTemplate: 'docker',
+      // matches: 17.6-202509151215-minimal-trixie
+      versioningTemplate: 'regex:^(?<major>\\d+)\\.(?<minor>\\d+)-(?<patch>\\d+)-(?<compatibility>\\S+)$',
+      autoReplaceStringTemplate: 'imageName: {{{depName}}}:{{{newValue}}}{{#if newDigest}}@{{{newDigest}}}{{/if}}'
+    }
   ],
 }
