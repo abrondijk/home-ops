@@ -5,3 +5,4 @@ metadata:
   name: storage-system
   annotations:
     kustomize.toolkit.fluxcd.io/prune: disabled
+    pod-security.kubernetes.io/enforce: privileged
