@@ -15,7 +15,7 @@ spec:
         pod:
           hostNetwork: true
           nodeSelector:
-            kubernetes.io/hostname: quaoar
+            kubernetes.io/hostname: 52-quaoar
         containers:
           app:
             image:
