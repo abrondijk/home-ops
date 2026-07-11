@@ -20,18 +20,36 @@ cniConfig:
 
 nodes:
   - &intelNode
-    hostname: "varuna"
+    hostname: "51-varuna"
     ipAddress: "10.20.20.51"
     installDiskSelector:
       wwid: "naa.500a0751e298186c"
     controlPlane: true
+    nodeLabels: &labels
+      node.longhorn.io/create-default-disk: "config"
+    nodeAnnotations: &annotations
+      node.longhorn.io/default-disks-config: |
+        [
+          {
+            "name": "longhorn-v2",
+            "allowScheduling": true,
+            "diskType": "block",
+            "path": "/dev/disk/by-partlabel/r-longhorn-data",
+            "tags": [
+              "fast",
+              "v2"
+            ]
+          }
+        ]
     machineSpec:
       secureboot: false
       arch: "amd64"
       mode: "metal"
-    kernelModules:
+    kernelModules: &kernelModules
       - name: vfio_pci
       - name: uio_pci_generic
+      - name: nvme_tcp
+      - name: ublk_drv
     schematic:
       customization:
         extraKernelArgs:
@@ -100,7 +118,7 @@ nodes:
         vip:
           ip: "10.20.20.100"
   - <<: *intelNode
-    hostname: "quaoar"
+    hostname: "52-quaoar"
     ipAddress: "10.20.20.52"
     installDiskSelector:
       wwid: "naa.50026b738121a9bd"
@@ -116,7 +134,7 @@ nodes:
             addresses:
               - "10.20.50.52/24"
   - <<: *intelNode
-    hostname: "hygiea"
+    hostname: "53-hygiea"
     ipAddress: "10.20.20.53"
     installDiskSelector:
       wwid: "naa.500a0751e1d4d161"
@@ -152,7 +170,7 @@ nodes:
           - pci=nommconf # Apparently required: https://unix.stackexchange.com/questions/327730/what-causes-this-pcieport-00000003-0-pcie-bus-error-aer-bad-tlp#369090
         systemExtensions: *intelExtensions
   - <<: *intelNode
-    hostname: "eris"
+    hostname: "54-eris"
     ipAddress: "10.20.20.54"
     installDiskSelector:
       wwid: "naa.5002538d40a9267f"
@@ -169,7 +187,7 @@ nodes:
               - "10.20.50.54/24"
     schematic: *intelDellSchematic
   - &rockNode
-    hostname: "haumea"
+    hostname: "61-haumea"
     ipAddress: "10.20.20.61"
     installDiskSelector:
       wwid: "eui.002538b921b9e0f5"
@@ -177,11 +195,11 @@ nodes:
       secureboot: false
       arch: "arm64"
       mode: "metal"
-    kernelModules:
-      - name: vfio_pci
-      - name: uio_pci_generic
+    kernelModules: *kernelModules
     nodeLabels:
+      <<: *labels
       node-type: "worker"
+    nodeAnnotations: *annotations
     schematic:
       overlay:
         image: siderolabs/sbc-rockchip
@@ -244,6 +262,7 @@ patches:
   - "@./patches/global/machine-time.yaml"
   - "@./patches/global/machine-hugepages.yaml"
   - "@./patches/global/longhorn-partition.yaml"
+  - "@./patches/storage/machine-kubelet-openebs.yaml"
 
 # Controller patches
 controlPlane:

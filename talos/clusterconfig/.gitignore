@@ -4,3 +4,8 @@ talosconfig
 kubernetes-hygiea.yaml
 kubernetes-quaoar.yaml
 kubernetes-eris.yaml
+kubernetes-51-varuna.yaml
+kubernetes-52-quaoar.yaml
+kubernetes-53-hygiea.yaml
+kubernetes-54-eris.yaml
+kubernetes-61-haumea.yaml
