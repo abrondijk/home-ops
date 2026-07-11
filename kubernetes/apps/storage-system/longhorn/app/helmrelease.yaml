@@ -34,6 +34,7 @@ spec:
       v1DataEngine: false
       v2DataEngine: true
       createDefaultDiskLabeledNodes: true
+      storageReservedPercentageForDefaultDisk: 5
       allowRecurringJobWhileVolumeDetached: true
       orphanResourceAutoDeletion: "replica-data;instance"
       backupTarget: &s3Target "s3://longhorn.bronlab.backup@eu-central-1/"
