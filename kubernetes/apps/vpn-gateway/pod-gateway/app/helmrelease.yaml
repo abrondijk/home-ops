@@ -49,7 +49,7 @@ spec:
         gluetun:
           image:
             repository: docker.io/qmcgaw/gluetun
-            tag: v3.41.1
+            tag: v3.41.3
         envFrom: &secret
           - secretRef:
               name: vpn-authentication
