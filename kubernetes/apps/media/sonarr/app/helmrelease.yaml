@@ -36,6 +36,7 @@ spec:
               SONARR__POSTGRES__PORT: "${POSTGRES_PORT}"
               SONARR__AUTHENTICATION_METHOD: External
               SONARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
+              SONARR__LOG_LEVEL: debug
               TZ: "${TIMEZONE}"
             envFrom:
               - secretRef:
