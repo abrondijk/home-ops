@@ -104,3 +104,5 @@ spec:
         type: nfs
         server: "${LAN_TRUENAS_IP}"
         path: "${TRUENAS_MEBIALIBRARY_PATH}"
+      tmp:
+        type: emptyDir
