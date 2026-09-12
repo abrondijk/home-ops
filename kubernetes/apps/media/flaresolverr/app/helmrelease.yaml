@@ -27,7 +27,7 @@ spec:
           flaresolverr:
             image:
               repository: ghcr.io/flaresolverr/flaresolverr
-              tag: v3.5.0
+              tag: v3.5.2
               pullPolicy: IfNotPresent
             resources:
               requests:
@@ -45,7 +45,7 @@ spec:
           flaresolverr-proxied:
             image:
               repository: ghcr.io/flaresolverr/flaresolverr
-              tag: v3.5.0
+              tag: v3.5.2
               pullPolicy: IfNotPresent
             resources:
               requests:
