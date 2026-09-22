@@ -31,6 +31,7 @@ spec:
               pullPolicy: IfNotPresent
             env:
               RADARR__SERVER__PORT: &port 80
+              RADARR__AUTH__REQUIRED: DisabledForLocalAddresses
               RADARR__POSTGRES__HOST: "${POSTGRES_HOST}"
               RADARR__POSTGRES__PORT: "${POSTGRES_PORT}"
               TZ: "${TIMEZONE}"
@@ -100,3 +101,5 @@ spec:
         type: nfs
         server: "${LAN_TRUENAS_IP}"
         path: "${TRUENAS_MEBIALIBRARY_PATH}"
+      tmp:
+        type: emptyDir
