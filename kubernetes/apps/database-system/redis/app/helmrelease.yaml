@@ -34,7 +34,7 @@ spec:
       enabled: true
       image:
         repository: bitnami/redis-sentinel
-        tag: "latest@sha256:9cbb25c6480f651e11176b6ad71900e02bb27fd98482507d6c1b62a2d10896c9"
+        tag: "latest@sha256:f6fffdc579bc23b5ab8110970d6938cdeb82be9a2e270daf104abebfc77c95f4"
         pullPolicy: IfNotPresent
       resourcesPreset: "small"
       masterSet: redis-master
@@ -47,13 +47,13 @@ spec:
       enabled: false
     image:
       repository: bitnami/redis
-      tag: "latest@sha256:33dbb7a4be39e73f0d5178e9040061ecb708946f55169657aa6897ba0a2c71d9"
+      tag: "latest@sha256:e153201276f043fefa579941a7b5ffa2ee4c67e23bc1ad34b43374d14a36d4cb"
       pullPolicy: IfNotPresent
     metrics:
       enabled: true
       image:
         repository: bitnami/redis-exporter
-        tag: "latest@sha256:aa5849cab223d19f6210cfa97e54214b2f3e3d6ce7efec74fcbc273fa9976744"
+        tag: "latest@sha256:59d88c3e77262ad50eb4d65dc8f37e83eac7efc55a42b5f31ceb0562f83ab5ca"
         pullPolicy: IfNotPresent
       resourcesPreset: "small"
       serviceMonitor:
