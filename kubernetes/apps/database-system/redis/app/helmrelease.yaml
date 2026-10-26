@@ -47,13 +47,13 @@ spec:
       enabled: false
     image:
       repository: bitnami/redis
-      tag: "latest@sha256:e153201276f043fefa579941a7b5ffa2ee4c67e23bc1ad34b43374d14a36d4cb"
+      tag: "latest@sha256:24023e659e725cea8b06f5bb14d732bf749a10347cb22e0fa40b61debb7373ef"
       pullPolicy: IfNotPresent
     metrics:
       enabled: true
       image:
         repository: bitnami/redis-exporter
-        tag: "latest@sha256:59d88c3e77262ad50eb4d65dc8f37e83eac7efc55a42b5f31ceb0562f83ab5ca"
+        tag: "latest@sha256:8a6962becf2f7ec8958738fb0bfb74201ad91ab2d343ffc3b5101e9fa5874711"
         pullPolicy: IfNotPresent
       resourcesPreset: "small"
       serviceMonitor:
