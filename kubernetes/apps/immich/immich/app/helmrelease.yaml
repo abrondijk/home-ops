@@ -35,7 +35,7 @@ spec:
           app:
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: &immich-version v3.3.5
+              tag: &immich-version v3.3.6
             envFrom: &envFrom
               - secretRef:
                   name: postgres-credentials
