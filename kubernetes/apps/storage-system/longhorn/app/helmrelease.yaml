@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: longhorn
-      version: "1.11.2"
+      version: "1.12.2"
       sourceRef:
         kind: HelmRepository
         name: longhorn
@@ -33,6 +33,13 @@ spec:
       dataEngine: v2
       v1DataEngine: false
       v2DataEngine: true
+      dataEngineInterruptModeEnabled: true
+      dataEngineCPUIsolationEnabled: true
+      rwxVolumeFastFailover: true
+      snapshotDataIntegrity: "enabled"
+      restoreVolumeRecurringJobs: true
+      nodeDownPodDeletionPolicy: "delete-both-statefulset-and-deployment-pod"
+      nodeDrainPolicy: "block-for-eviction-if-contains-last-replica"
       createDefaultDiskLabeledNodes: true
       storageReservedPercentageForDefaultDisk: 5
       allowRecurringJobWhileVolumeDetached: true
