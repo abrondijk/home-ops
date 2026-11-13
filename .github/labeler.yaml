@@ -6,7 +6,7 @@ area/bootstrap:
 area/docs:
   - changed-files:
       - any-glob-to-any-file:
-          - README.md
+          - TEMPLATE_USAGE.md
 area/github:
   - changed-files:
       - any-glob-to-any-file:

@@ -1,0 +1,70 @@
+---
+clusterName: bronetes
+clusterEndpoint: https://10.20.20.100:6443
+
+# renovate: datasource=github-releases depName=siderolabs/talos
+talosVersion: v1.14.6
+# renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+kubernetesVersion: v1.35.2
+
+secretsPath: talsecret.sops.yaml
+
+nodes:
+  - &intelNode
+    host: "51-varuna"
+    ip: "10.20.20.51"
+    role: control-plane
+    secureboot: false
+    schematicId: "@schematic.yaml.tpl"
+    data: &intelNodeData
+      type: intel
+      vlanIP: "10.20.50.51"
+      installDiskSelector: 'disk.wwid == "naa.500a0751e298186c"'
+      macAddr: "02:26:26:02:28:3f"
+      mtu: 9000
+      kernelModules: &controlNodeKernelModules
+        - "vfio_pci"
+        - "uio_pci_generic"
+        - "nvme_tcp"
+        - "ublk_drv"
+  - <<: *intelNode
+    host: "52-quaoar"
+    ip: "10.20.20.52"
+    data:
+      <<: *intelNodeData
+      vlanIP: "10.20.50.52"
+      installDiskSelector: 'disk.wwid == "naa.50026b738121a9bd"'
+      macAddr: "02:26:26:02:27:5a"
+  - <<: *intelNode
+    host: "53-hygiea"
+    ip: "10.20.20.53"
+    data:
+      <<: *intelNodeData
+      vlanIP: "10.20.50.53"
+      installDiskSelector: 'disk.wwid == "naa.500a0751e1d4d161"'
+      macAddr: "00:e0:4c:68:13:04"
+  - <<: *intelNode
+    host: "54-eris"
+    ip: "10.20.20.54"
+    data:
+      <<: *intelNodeData
+      vlanIP: "10.20.50.54"
+      installDiskSelector: 'disk.wwid == "naa.5002538d40a9267f"'
+      macAddr: "00:e0:4c:68:14:1f"
+  - &rockNode
+    host: "61-haumea"
+    ip: "10.20.20.61"
+    role: worker
+    secureboot: false
+    schematicId: "@schematic.yaml.tpl"
+    data:
+      type: rock
+      vlanIP: "10.20.50.61"
+      installDiskSelector: 'disk.wwid == "eui.002538b921b9e0f5"'
+      macAddr: "00:e0:4c:68:00:07"
+      mtu: 9000
+      kernelModules: &controlNodeKernelModules
+        - "vfio_pci"
+        - "uio_pci_generic"
+        - "nvme_tcp"
+        - "ublk_drv"

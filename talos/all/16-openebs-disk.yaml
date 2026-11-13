@@ -1,0 +1,11 @@
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: openebs-data
+provisioning:
+  diskSelector:
+    match: disk.transport == 'nvme'
+  minSize: 5GiB
+  maxSize: 50GiB
+filesystem:
+  type: xfs

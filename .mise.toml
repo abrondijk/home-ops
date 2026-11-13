@@ -1,7 +1,9 @@
 [env]
+_.python.venv = { path = "{{config_root}}/.venv", create = true }
 #KUBECONFIG = "{{config_root}}/kubeconfig"
 #SOPS_AGE_KEY_FILE = "{{config_root}}/age.key"
-TALOSCONFIG = "{{config_root}}/talos/clusterconfig/talosconfig"
+TALOSCONFIG = "{{config_root}}/talos/output/talosconfig"
+LEFTHOOK_OUTPUT = "false"
 
 [tools]
 "aqua:budimanjojo/talhelper" = "3.1.17"
@@ -21,3 +23,4 @@ TALOSCONFIG = "{{config_root}}/talos/clusterconfig/talosconfig"
 "aqua:siderolabs/talos" = "1.14.5"
 "aqua:yannh/kubeconform" = "0.8.0"
 "cilium-hubble" = "1.20.4"
+"aqua:postfinance/topf" = "0.6.2"
