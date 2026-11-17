@@ -47,6 +47,14 @@ spec:
       backupTarget: &s3Target "s3://longhorn.bronlab.backup@eu-central-1/"
       rebuildConcurrentSyncLimit: 2
       defaultDataLocality: best-effort
+    networkPolicies:
+      metricsScrapeSources:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: observability
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: prometheus
     metrics:
       serviceMonitor:
         enabled: true
